@@ -21,11 +21,24 @@
 #    exit
 #fi
 
+# declare the files to be copies and their destinations
 
-
+declare -A files=( ["bash/bashrc"]="~/.bashrc" ["compton/compton.conf"]="~/.compton.conf" ["conky/clock_rings.lua"]="~/.conky/clock_rings.lua" ["conky/conky_lua.conf"]="~/.conky/conky_lua.conf" ["vim/vimrc"]="~/.vimrc" ["i3/config"]="~/.i3/config")
+declare -A files_root=( ["lxdm/lxdm.conf"]="/etc/lxdm/lxdm.conf" )
 
 function do_symlink()
 {
+    for file in "${!files[@]}"; do
+        dest="${files["$file"]}"
+        replace="$HOME"
+        result="${dest//\~/$replace}"
+        dir="${result%/*}"
+        echo "ln -s $PWD/$file $result"
+        mkdir -p "$dir"
+        ln -s "$PWD/$file" "$result"
+
+        #echo "$file - ${files["$file"]}"
+    done 
     echo "symlinking the shit out of it!"
 }
 
