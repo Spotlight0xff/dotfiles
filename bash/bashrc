@@ -87,10 +87,17 @@ alias :x='exit'
 alias cd..='cd ..'
 
 
+alias gs='git status'
+alias gg='git commit'
+alias gd='git diff'
+alias ga='git add'
+alias gp='git push'
+
 # bash options
+export PAGER=most
 export EDITOR=vi
 export SUDO_EDITOR=rvim
-export HISTSIZE=5000
+export HISTSIZE=500000
 export HISTFILESIZE=200000
 
 # Compile and execute a C source on the fly

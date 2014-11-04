@@ -163,7 +163,7 @@ settings_table = {
         {
         name='downspeedf',
         arg='wlp6s0',
-        max=700,
+        max=12000,
         bg_colour=0xffffff,
         bg_alpha=0.2,
         fg_colour=0x339900,
@@ -177,7 +177,7 @@ settings_table = {
         {
         name='upspeedf',
         arg='wlp6s0',
-        max=100,
+        max=3000,
         bg_colour=0xffffff,
         bg_alpha=0.2,
         fg_colour=0xff6600,
