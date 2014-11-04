@@ -161,7 +161,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+KP_Add exec "/media/Data/Dropbox/Code/scripts/csgo_twitch.sh"
 # cycle wallpaper
 bindsym $mod+KP_Subtract exec --no-startup-id "pkill wallpaper.sh && /home/spotlight/scripts/wallpaper.sh &"
-
+#start firefox-nightly
+bindsym $mod+KP_Divide exec "firefox-nightly"
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
