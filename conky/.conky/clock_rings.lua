@@ -298,7 +298,6 @@ function conky_clock_rings()
     local function setup_rings(cr,pt)
         local str=''
         local value=0
-        print (pt['name']) 
         str=string.format('${%s %s}',pt['name'],pt['arg'])
         str=conky_parse(str)
         
