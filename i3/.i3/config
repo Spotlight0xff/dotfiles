@@ -11,8 +11,10 @@
 
 # 1px Border Windows
 for_window [class="Firefox"] border 1pixel
+for_window [class="Chromium"] border none
 for_window [class="Xfce4-terminal"] border 1pixel
 for_window [class="Steam"] floating enable
+for_window [class="conky_status"] floating enable, border none
 set $mod Mod1
 
 
@@ -46,8 +48,8 @@ bindsym $mod+minus scratchpad show
 # Show the sup-mail scratchpad window, if any.
 bindsym $mod+m [title="^Sup ::"] scratchpad show
 
-bindsym $mod+numbersign [class="Conky"] scratchpad show
-for_window [class="Conky"] move scratchpad
+#bindsym $mod+numbersign [class="Conky"] scratchpad show
+#for_window [class="Conky"] move scratchpad
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -116,16 +118,16 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+1 [class="conky_status"] move to workspace 1,workspace 1,focus tiling
+bindsym $mod+2 [class="conky_status"] move to workspace 2,workspace 2,focus tiling
+bindsym $mod+3 [class="conky_status"] move to workspace 3,workspace 3,focus tiling
+bindsym $mod+4 [class="conky_status"] move to workspace 4,workspace 4,focus tiling
+bindsym $mod+5 [class="conky_status"] move to workspace 5,workspace 5,focus tiling
+bindsym $mod+6 [class="conky_status"] move to workspace 6,workspace 6,focus tiling
+bindsym $mod+7 [class="conky_status"] move to workspace 7,workspace 7,focus tiling
+bindsym $mod+8 [class="conky_status"] move to workspace 8,workspace 8,focus tiling
+bindsym $mod+9 [class="conky_status"] move to workspace 9,workspace 9,focus tiling
+bindsym $mod+0 [class="conky_status"] move to workspace 10,workspace 10,focus tiling
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -142,11 +144,11 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 # enable volume control
 # mute
-bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioMute exec "amixer -q set Master toggle && killall -USR1 i3status"
 # lower volume
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
+bindsym XF86AudioLowerVolume exec "amixer -q set Master 1%- && killall -USR1 i3status"
 # raise volume
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
+bindsym XF86AudioRaiseVolume exec "amixer -q set Master 1%+ && killall -USR1 i3status"
 
 
 # lock screen
@@ -161,8 +163,6 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+KP_Add exec "/media/Data/Dropbox/Code/scripts/csgo_twitch.sh"
 # cycle wallpaper
 bindsym $mod+KP_Subtract exec --no-startup-id "pkill wallpaper.sh && /home/spotlight/scripts/wallpaper.sh &"
-#start firefox-nightly
-bindsym KP_Divide exec "firefox-nightly"
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -203,7 +203,7 @@ bar {
         urgent_workspace   #2f343a #900000 #ffffff
     }
     font pango:DejaVu Sans Mono, Icons 12
-    status_command i3status
+#    status_command i3status
 }
 
 
@@ -231,6 +231,8 @@ exec --no-startup-id compton --config ~/.compton.conf -b
 # use conky in scratchpad
 exec --no-startup-id conky -c ~/.conky/conky_lua.conf &
 
+# statusbar conky !! *__*
+exec --no-startup-id conky -c ~/.conky/conky_bar.conf &
 # notification daemon
 exec --no-startup-id dunst -markup -lh 20 -transparency 20 -padding 5 -horizontal_padding 10  -frame_width 1 -frame_color "#000000" &
 
