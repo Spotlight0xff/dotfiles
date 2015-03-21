@@ -20,35 +20,7 @@ Changelog:
 
 
 settings_table = {
-    {
-        -- Edit this table to customise your rings.
-        -- You can create more rings simply by adding more elements to settings_table.
-        -- "name" is the type of stat to display; you can choose from 'cpu', 'memperc', 'fs_used_perc', 'battery_used_perc'.
-        name='wireless_link_qual_perc',
-        -- "arg" is the argument to the stat type, e.g. if in Conky you would write ${cpu cpu0}, 'cpu0' would be the argument. If you would not use an argument in the Conky variable, use ''.
-        arg='wlp3s0',
-        -- "max" is the maximum value of the ring. If the Conky variable outputs a percentage, use 100.
-        max=100,
-        -- "bg_colour" is the colour of the base ring.
-        bg_colour=0xffffff,
-        -- "bg_alpha" is the alpha value of the base ring.
-        bg_alpha=0.1,
-        -- "fg_colour" is the colour of the indicator part of the ring.
-        fg_colour=0x00FF00,
-        -- "fg_alpha" is the alpha value of the indicator part of the ring.
-        fg_alpha=0.5,
-        -- "x" and "y" are the x and y coordinates of the centre of the ring, relative to the top left corner of the Conky window.
-        x=60, y=12,
-        -- "radius" is the radius of the ring.
-        radius=9,
-        -- "thickness" is the thickness of the ring, centred around the radius.
-        thickness=5,
-        -- "start_angle" is the starting angle of the ring, in degrees, clockwise from top. Value can be either positive or negative.
-        start_angle=0,
-        -- "end_angle" is the ending angle of the ring, in degrees, clockwise from top. Value can be either positive or negative, but must be larger than start_angle.
-        end_angle=360
-    },
-    {
+   {
         name='cpu',
         arg='cpu0',
         max=100,
@@ -56,11 +28,11 @@ settings_table = {
         bg_alpha=0.2,
         fg_colour=0xFF6600,
         fg_alpha=0.8,
-        x=440, y=12,
-        radius=9,
-        thickness=5,
-        start_angle=0,
-        end_angle=360
+        x=50, y=157,
+        radius=40,
+        thickness=10,
+        start_angle=-90,
+        end_angle=180
     },
     {
         name='memperc',
@@ -70,11 +42,11 @@ settings_table = {
         bg_alpha=0.2,
         fg_colour=0xFF6600,
         fg_alpha=0.8,
-        x=540, y=12,
-        radius=9,
-        thickness=5,
-        start_angle=0,
-        end_angle=360
+        x=170, y=157,
+        radius=40,
+        thickness=10,
+        start_angle=-90,
+        end_angle=180
     },
      {
         name='fs_used_perc',
@@ -84,11 +56,11 @@ settings_table = {
         bg_alpha=0.2,
         fg_colour=0xFF6600,
         fg_alpha=0.8,
-        x=670, y=12,
-        radius=9,
-        thickness=5,
-        start_angle=0,
-        end_angle=360
+        x=310, y=157,
+        radius=40,
+        thickness=10,
+        start_angle=-90,
+        end_angle=180
     },
     {
         name='fs_used_perc',
@@ -98,25 +70,25 @@ settings_table = {
         bg_alpha=0.2,
         fg_colour=0xFF6600,
         fg_alpha=0.8,
-        x=790, y=12,
-        radius=9,
-        thickness=5,
-        start_angle=0,
-        end_angle=360
+        x=455, y=157,
+        radius=40,
+        thickness=10,
+        start_angle=-90,
+        end_angle=180
     },
         {
-        name='battery_percent',
-        arg='',
-        max=100,
+        name='downspeedf',
+        arg='wlp3s0',
+        max=12000,
         bg_colour=0xffffff,
         bg_alpha=0.2,
-        fg_colour=-1,--0xffffff, -- new options, hacky tho, changes colour dependent on the state
+        fg_colour=0x339900,
         fg_alpha=0.8,
-        x=920, y=12,
-        radius=9,
-        thickness=5,
-        start_angle=0,
-        end_angle=360
+        x=597, y=157,
+        radius=49,
+        thickness=8,
+        start_angle=-90,
+        end_angle=180
     },
         {
         name='upspeedf',
@@ -126,31 +98,15 @@ settings_table = {
         bg_alpha=0.2,
         fg_colour=0xff6600,
         fg_alpha=0.8,
-        x=270, y=12,
-        radius=9,
-        thickness=5,
-        start_angle=0,
-        end_angle=360
+        x=597, y=157,
+        radius=40,
+        thickness=8,
+        start_angle=-90,
+        end_angle=180
     },
-        {
-        name='downspeedf',
-        arg='wlp3s0',
-        max=10000,
-        bg_colour=0xffffff,
-        bg_alpha=0.2,
-        fg_colour=0x00ff00,
-        fg_alpha=0.8,
-        x=340, y=12,
-        radius=9,
-        thickness=5,
-        start_angle=0,
-        end_angle=360
-    }
-
 
 
 }
-
 
 
 require 'cairo'
@@ -166,21 +122,6 @@ function draw_ring(cr,t,pt)
     
     local xc,yc,ring_r,ring_w,sa,ea=pt['x'],pt['y'],pt['radius'],pt['thickness'],pt['start_angle'],pt['end_angle']
     local bgc, bga, fgc, fga=pt['bg_colour'], pt['bg_alpha'], pt['fg_colour'], pt['fg_alpha']
-    if pt['fg_colour'] == -1 then
-       if pt['name'] == "battery_percent" then
-           if t < 0.2 then
-               fgc = 0xFF3333
-           elseif t < 0.4 then
-               fgc = 0xFFAA00
-           else
-               fgc = 0x00FF00
-           end
-           str = conky_parse('${battery_short}');
-           if string.match(str,"C") then
-               fgc = 0x0000FF
-           end
-       end
-    end
 
 
     local angle_0=sa*(2*math.pi/360)-math.pi/2
@@ -206,7 +147,7 @@ end
 
 
 
-function conky_bar_rings()
+function conky_overlay_rings()
     local function setup_rings(cr,pt)
         local str=''
         local value=0
