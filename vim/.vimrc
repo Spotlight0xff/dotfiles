@@ -36,6 +36,21 @@ nmap <leader>w :w!<cr>
 nmap <leader>wq :wq<cr>
 nmap <leader>q :q<cr>
 
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+
+" Syntastic
+"let g:syntastic_cpp_check_header = 1
+"let g:syntastic_haskell_ghc_mod_exec = 'ghc-mod.sh'
+
+" slow multiple_cursors &amp; YCM
+function! Multiple_cursors_before()
+    let g:ycm_auto_trigger = 0
+endfunction
+      
+function! Multiple_cursors_after()
+    let g:ycm_auto_trigger = 1
+endfunction
 
 """
 """ ==> VIM User interface
@@ -106,7 +121,7 @@ colorscheme desert
 
 " set utf8 as standard encoding
 set encoding=utf8
-
+set fileencodings=utf-8
 " use unix as the standard file type
 set ffs=unix,dos,mac
 
