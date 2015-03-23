@@ -54,6 +54,11 @@ alias less='most'
 
 alias msfconsole="msfconsole --quiet -x \"db_connect spotlight@msf\""
 
+alias urldecode='python2.7 -c "import sys, urllib as ul; \
+        print ul.unquote_plus(sys.argv[1])"'
+alias urlencode='python2.7 -c "import sys, urllib as ul; \
+        print ul.quote_plus(sys.argv[1])"'
+
 bindkey -a 'gg' beginning-of-buffer-or-history
 bindkey -a 'g~' vi-oper-swap-case
 bindkey -a G end-of-buffer-or-history
