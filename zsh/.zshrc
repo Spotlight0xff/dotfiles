@@ -59,6 +59,7 @@ alias urldecode='python2.7 -c "import sys, urllib as ul; \
 alias urlencode='python2.7 -c "import sys, urllib as ul; \
         print ul.quote_plus(sys.argv[1])"'
 
+alias pip3update='sudo pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
 bindkey -a 'gg' beginning-of-buffer-or-history
 bindkey -a 'g~' vi-oper-swap-case
 bindkey -a G end-of-buffer-or-history
