@@ -1,0 +1,98 @@
+[general]
+ui = ttyui
+accounts = Public, Private, Dev, Student
+pythonfile = ~/bin/decrypt_passwd.py
+maxsyncaccounts = 4
+
+# muttrc gen
+[mbnames]
+enabled = yes
+filename = ~/.mutt/mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"
+
+[Account Public]
+autorefresh = 5
+quick = 10
+localrepository = Public-Local
+remoterepository = Public-Remote
+
+[Account Private]
+autorefresh = 5
+quick = 10
+localrepository = Private-Local
+remoterepository = Private-Remote
+
+[Account Dev]
+autorefresh = 5
+quick = 10
+localrepository = Dev-Local
+remoterepository = Dev-Remote
+
+[Account Student]
+autorefresh = 5
+quick = 10
+localrepository = Student-Local
+remoterepository = Student-Remote
+
+
+[Repository Public-Local]
+keepalive = 60
+holdconnectionopen = yes
+type = Maildir
+localfolders = ~/Mail/Public
+
+[Repository Private-Local]
+keepalive = 60
+holdconnectionopen = yes
+type = Maildir
+localfolders = ~/Mail/Private
+
+[Repository Dev-Local]
+keepalive = 60
+holdconnectionopen = yes
+type = Maildir
+localfolders = ~/Mail/Dev
+
+[Repository Student-Local]
+keepalive = 60
+holdconnectionopen = yes
+type = Maildir
+localfolders = ~/Mail/Student
+
+
+[Repository Public-Remote]
+type = Gmail
+remoteuser = fakeat0815@gmail.com
+remotepasseval = passwd("offlineimap_public")
+realdelete = no
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[Repository Private-Remote]
+type = Gmail
+remoteuser = andre.merboldt@gmail.com
+remotepasseval = passwd("offlineimap_private")
+realdelete = no
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[Repository Dev-Remote]
+type = Gmail
+remoteuser = spotlight0xff@gmail.com
+remotepasseval = passwd("offlineimap_dev")
+realdelete = no
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+
+[Repository Student-Remote]
+type = IMAP
+ssl = yes
+remotehost = mail.rwth-aachen.de
+remoteuser = am540506@rwth-aachen.de
+remotepasseval = passwd("offlineimap_student")
+realdelete = no
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+
+

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-programs=(i3 compton bash vim)
+programs=(i3 compton bash vim offlineimap livestreamer mutt)
 programs_root=(lxdm)
 for t in "${programs[@]}"
 do

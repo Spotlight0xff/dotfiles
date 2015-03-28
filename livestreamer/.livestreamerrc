@@ -1,0 +1,3 @@
+hls-live-edge=8
+hls-segment-attempts=4
+hls-segment-threads=4

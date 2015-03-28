@@ -1,0 +1,4 @@
+set from = "fakeat0815@gmail.com"
+set spoolfile = "+Public/[Google Mail].Alle Nachrichten"
+set mbox = "+Public/archive"
+set postponed = "+Public/[Google Mail].Ent&APw-rfe"
