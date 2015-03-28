@@ -17,6 +17,7 @@ for_window [class="Steam"] floating enable
 for_window [class="conky_status"] floating enable, border none
 for_window [class="URxvt"] border 1pixel
 for_window [class="Conky"] move scratchpad
+for_window [instance="mutt"] move scratchpad
 for_window [class="dzen2"] floating enable
 set $mod Mod1
 
@@ -44,14 +45,16 @@ floating_modifier $mod
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
 
-# Show the first scratchpad window
-bindsym $mod+minus [class="^((?!Conky).)*$"] scratchpad show
+# Show the first scratchpad window ( not conky, Mutt or ncmpcpp)
+bindsym $mod+minus [class="^((?!Conky).)*$" instance="^((?!mutt).)*$"] scratchpad show
 
 
-# Show the sup-mail scratchpad window, if any.
-bindsym $mod+m [title="^Sup ::"] scratchpad show
 
+# show the conky overlay
 bindsym $mod+numbersign [class="Conky"] scratchpad show
+
+# show the mutt overlay
+bindsym $mod+KP_Enter [instance="mutt"] scratchpad show
 
 # start a terminal
 bindsym $mod+Return exec urxvtc
@@ -230,7 +233,7 @@ exec --no-startup-id xautolock -time 3 -locker "i3lock -i /home/spotlight/Dropbo
 
 
 # fucking awesome bar #2
-exec --no-startup-id ~/bin/wsbar.pl | ~/bin/dzen2 -h 24 -dock b -e 'button5=exec:i3-msg workspace next;button4=exec:i3-msg workspace prev' 
+exec_always --no-startup-id ~/bin/sleep_dz.sh 
 
 # set german keyboard (TODO!)
 exec --no-startup-id setxkbmap de &
@@ -238,8 +241,8 @@ exec --no-startup-id setxkbmap de &
 # start dropbox
 exec_always --no-startup-id dropboxd &
 
-# start network manager applet
-exec --no-startup-id nm-applet &
+# start network manager applet ( no need without systembar :P)
+# exec --no-startup-id nm-applet &
 
 # set wallpaper (change every 1min)
 exec --no-startup-id /home/spotlight/Dropbox/Code/scripts/wallpaper.sh &
@@ -249,12 +252,16 @@ exec --no-startup-id /home/spotlight/Dropbox/Code/scripts/wallpaper.sh &
 exec --no-startup-id compton --config ~/.compton.conf -b
 
 # use conky in scratchpad
-exec --no-startup-id conky -c ~/.conky/overlay.conf &
+exec --no-startup-id conky -c ~/.conky/conky_overlay.conf &
 
 # statusbar conky !! *__*
 exec --no-startup-id conky -c ~/.conky/conky_bar.conf &
+
 # notification daemon
 exec --no-startup-id dunst -markup -lh 20 -transparency 20 -padding 5 -horizontal_padding 10  -frame_width 1 -frame_color "#000000" &
+
+# mutt as scratchpad
+exec --no-startup-id urxvtc -name mutt -e mutt
 
 # devil's pie, window matching
 exec --no-startup-id devilspie -a
