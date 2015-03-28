@@ -183,7 +183,8 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # start twitch.tv/csgo-scripts
-bindsym $mod+KP_Add exec "/home/spotlight/Dropbox/Code/scripts/csgo_twitch.sh"
+#bindsym $mod+KP_Add exec "/home/spotlight/Dropbox/Code/scripts/csgo_twitch.sh"
+bindsym $mod+KP_Add exec "/home/spotlight/git/twitch_dmenu/twitch_dmenu.py"
 # cycle wallpaper
 bindsym $mod+KP_Subtract exec --no-startup-id "pkill wallpaper.sh; /home/spotlight/Dropbox/Code/scripts/wallpaper.sh &"
 
