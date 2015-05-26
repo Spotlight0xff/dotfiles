@@ -9,6 +9,7 @@ bindkey -v
 # The following lines were added by compinstall
 zstyle :compinstall filename "/home/spotlight/.zshrc"
 zstyle ':completion:*' menu select
+zstyle ':completion:*' use-ip true
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -17,6 +18,7 @@ export EDITOR=/usr/bin/vim
 autoload -Uz compinit
 compinit
 
+source /etc/profile.d/autojump.zsh
 # PROMPT
 autoload -U colors promptinit && colors
 PS1="%(0!.%{$fg[red]%}.%{$fg[green]%})%c%{$reset_color%}> "
