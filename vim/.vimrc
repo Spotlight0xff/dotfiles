@@ -36,6 +36,9 @@ nmap <leader>w :w!<cr>
 nmap <leader>wq :wq<cr>
 nmap <leader>q :q<cr>
 
+" avoid esc
+imap ,, <Esc>
+
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
