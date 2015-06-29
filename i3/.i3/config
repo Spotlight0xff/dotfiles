@@ -19,6 +19,7 @@ for_window [class="URxvt"] border 1pixel
 for_window [class="Conky"] move scratchpad
 for_window [instance="mutt"] move scratchpad
 for_window [class="dzen2"] floating enable
+for_window [class="Spotify"] border 1pixel
 set $mod Mod1
 
 
@@ -71,6 +72,12 @@ bindsym $mod+d exec xboomx
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 bindsym $mod+F12 exec --no-startup-id scrot
+
+
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous 
+
 
 # change focus
 bindsym $mod+j focus down
@@ -162,20 +169,24 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 # enable volume control
 # mute
-bindsym XF86AudioMute exec --no-startup-id "~/Dropbox/Code/scripts/volume_mute.sh"
+bindsym XF86AudioMute exec --no-startup-id "~/ownCloud/Code/scripts/volume_mute.sh"
 # lower volume
-bindsym XF86AudioLowerVolume exec --no-startup-id "~/Dropbox/Code/scripts/volume_lower.sh"
+bindsym XF86AudioLowerVolume exec --no-startup-id "~/ownCloud/Code/scripts/volume_lower.sh"
 # raise volume
-bindsym XF86AudioRaiseVolume exec --no-startup-id "~/Dropbox/Code/scripts/volume_raise.sh"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "~/ownCloud/Code/scripts/volume_raise.sh"
 
 # brightness control
-bindsym XF86MonBrightnessDown exec --no-startup-id "/home/spotlight/Dropbox/Code/scripts/brightness_lower.sh"
-bindsym XF86MonBrightnessUp exec --no-startup-id "/home/spotlight/Dropbox/Code/scripts/brightness_raise.sh"
+bindsym XF86MonBrightnessDown exec --no-startup-id "/home/spotlight/ownCloud/Code/scripts/brightness_lower.sh"
+bindsym XF86MonBrightnessUp exec --no-startup-id "/home/spotlight/ownCloud/Code/scripts/brightness_raise.sh"
 
 
 
 # lock screen
-bindsym $mod+Control+l exec --no-startup-id xautolock -locknow
+bindsym $mod+Control+l exec --no-startup-id ~/bin/lock.sh
+
+# disable lockscreen
+bindsym $mod+Control+Shift+l exec --no-startup-id ~/bin/disable_lock.sh
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -183,10 +194,10 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # start twitch.tv/csgo-scripts
-#bindsym $mod+KP_Add exec "/home/spotlight/Dropbox/Code/scripts/csgo_twitch.sh"
-bindsym $mod+KP_Add exec "/home/spotlight/git/twitch_dmenu/twitch_dmenu.py"
+bindsym $mod+KP_Delete exec "/home/spotlight/ownCloud/Code/scripts/csgo_twitch.sh"
 # cycle wallpaper
-bindsym $mod+KP_Subtract exec --no-startup-id "pkill wallpaper.sh; /home/spotlight/Dropbox/Code/scripts/wallpaper.sh &"
+bindsym KP_Add exec --no-startup-id "pkill wallpaper.sh; /home/spotlight/bin/wallpaper.sh &"
+bindsym KP_Subtract exec --no-startup-id "pkill wallpaper_last.sh; /home/spotlight/bin/wallpaper_last.sh &"
 
 # window switcher
 #bindsym Shift+underscore exec --no-startup-id "rofi -now -font 'snap 10' -fg '#505050' -bg '#000000' -hlfg '#ffb964' -o 85"
@@ -227,7 +238,7 @@ bindsym $mod+r mode "resize"
 
 # autostart
 # set lockscreen & screensaver
-exec --no-startup-id xautolock -time 3 -locker "i3lock -i /home/spotlight/Dropbox/Photos/Wallpaper/wallpaper-1107219_laptop.png" &
+exec --no-startup-id xautolock -time 3 -locker "i3lock -i /home/spotlight/ownCloud/Photos/Wallpaper/wallpaper-1107219_laptop.png" &
 
 # system tray
 # exec --no-startup-id stalonetray
@@ -246,7 +257,7 @@ exec_always --no-startup-id dropboxd &
 # exec --no-startup-id nm-applet &
 
 # set wallpaper (change every 1min)
-exec --no-startup-id /home/spotlight/Dropbox/Code/scripts/wallpaper.sh &
+exec --no-startup-id /home/spotlight/ownCloud/Code/scripts/wallpaper.sh &
 
 
 # use compton as composite manager
@@ -269,3 +280,4 @@ exec --no-startup-id devilspie -a
 
 # volume notification daemon
 exec --no-startup-id volnoti -t 1
+
