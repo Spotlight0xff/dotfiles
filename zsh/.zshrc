@@ -14,7 +14,8 @@ zstyle ':completion:*' use-ip true
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export KEYTIMEOUT=1
-export EDITOR=/usr/bin/vim
+export EDITOR="/usr/bin/vim"
+export BROWSER="/usr/bin/chromium"
 autoload -Uz compinit
 compinit
 
