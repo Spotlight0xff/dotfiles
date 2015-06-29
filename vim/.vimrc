@@ -7,6 +7,17 @@
 
 execute pathogen#infect()
 
+" start nerdtree if no files are specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" start nerdtree with ctrl-n
+map <C-n> :NERDTreeToggle<cr>
+
+
+" show taglist with <leader>tl
+map <C-l> :TlistToggle<cr>
+let g:Tlist_GainFocus_On_ToggleOpen = 1
+
 " lines of history
 set history=1000
 
