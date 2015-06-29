@@ -35,7 +35,7 @@ set_prompt()
 
 #PROMPT_COMMAND='set_prompt'
 function _update_ps1() {
-    export PS1="$(/home/spotlight/powerline-shell.py $? 2> /dev/null)"
+    export PS1="$(/home/spotlight/powerline-shell.py --cwd-only $? 2> /dev/null)"
 }
 
 export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
