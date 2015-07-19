@@ -3,6 +3,11 @@
 # perl install
 eval `perl -I ~/perl5/lib/perl5 -Mlocal::lib`
 
+# asmdoc
+asmdoc()
+{
+    r2 -c "?d $@" -q --
+}
 
 # colored command prompt
 
