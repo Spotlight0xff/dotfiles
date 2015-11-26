@@ -11,7 +11,7 @@
 
 # 1px Border Windows
 for_window [class="Firefox"] border 1pixel
-for_window [class="Chromium"] border none
+for_window [class="chromium"] border none
 for_window [class="Xfce4-terminal"] border 1pixel
 for_window [class="Steam"] floating enable
 for_window [class="conky_status"] floating enable, border none
@@ -50,6 +50,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus [class="^((?!Conky).)*$" instance="^((?!mutt).)*$"] scratchpad show
 
 
+bindsym $mod+KP_Multiply exec --no-startup-id ~/bin/update-system.sh
 
 # show the conky overlay
 bindsym $mod+numbersign [class="Conky"] scratchpad show
@@ -71,7 +72,7 @@ bindsym $mod+d exec xboomx
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-bindsym $mod+F12 exec --no-startup-id scrot
+bindsym $mod+F12 exec --no-startup-id /home/spotlight/bin/scrot.sh
 
 
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
@@ -194,10 +195,16 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # start twitch.tv/csgo-scripts
-bindsym $mod+KP_Delete exec "/home/spotlight/ownCloud/Code/scripts/csgo_twitch.sh"
+bindsym Control+KP_Delete exec "/home/spotlight/ownCloud/Code/scripts/csgo_twitch.sh"
 # cycle wallpaper
-bindsym KP_Add exec --no-startup-id "pkill wallpaper.sh; /home/spotlight/bin/wallpaper.sh &"
-bindsym KP_Subtract exec --no-startup-id "pkill wallpaper_last.sh; /home/spotlight/bin/wallpaper_last.sh &"
+bindsym Control+KP_Add exec --no-startup-id "pkill wallpaper.sh; /home/spotlight/bin/wallpaper.sh &"
+bindsym Control+KP_Subtract exec --no-startup-id "pkill wallpaper_last.sh; /home/spotlight/bin/wallpaper_last.sh &"
+
+bindsym Control+Delete exec --no-startup-id "pkill wallpaper_del.sh; /home/spotlight/bin/wallpaper_del.sh &"
+
+bindsym Control+space exec --no-startup-id "keepass --auto-type"
+
+
 
 # window switcher
 #bindsym Shift+underscore exec --no-startup-id "rofi -now -font 'snap 10' -fg '#505050' -bg '#000000' -hlfg '#ffb964' -o 85"
@@ -250,8 +257,8 @@ exec_always --no-startup-id ~/bin/sleep_dz.sh
 # set german keyboard (TODO!)
 exec --no-startup-id setxkbmap de &
 
-# start dropbox
-exec_always --no-startup-id dropboxd &
+# start ownCloud
+exec_always --no-startup-id ~/bin/owncloud.sh &
 
 # start network manager applet ( no need without systembar :P)
 # exec --no-startup-id nm-applet &
@@ -270,7 +277,7 @@ exec --no-startup-id conky -c ~/.conky/conky_overlay.conf &
 exec --no-startup-id conky -c ~/.conky/conky_bar.conf &
 
 # notification daemon
-exec --no-startup-id dunst -markup -lh 20 -transparency 20 -padding 5 -horizontal_padding 10  -frame_width 1 -frame_color "#000000" &
+exec --no-startup-id dunst -markup -lh 20 -transparency 20 &
 
 # mutt as scratchpad
 exec --no-startup-id urxvtc -name mutt -e mutt
@@ -281,3 +288,6 @@ exec --no-startup-id devilspie -a
 # volume notification daemon
 exec --no-startup-id volnoti -t 1
 
+
+# f.lux
+exec --no-startup-id xflux -l 50.783854 -g 6.058316
