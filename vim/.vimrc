@@ -190,6 +190,10 @@ autocmd BufReadPost *
 " Remember info about open buffers on close
 set viminfo^=%
 
+" use F4 to compile code
+:command Compile :! make; false
+map <F4> :Compile <CR>
+
 """
 """ ==> Status line
 """
