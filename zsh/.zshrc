@@ -10,16 +10,22 @@ bindkey -v
 zstyle :compinstall filename "/home/spotlight/.zshrc"
 zstyle ':completion:*' menu select
 zstyle ':completion:*' use-ip true
+zstyle ':completion:*' rehash true
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export KEYTIMEOUT=1
-export EDITOR="/usr/bin/vim"
-export BROWSER="/usr/bin/chromium"
+export EDITOR="vim"
+export BROWSER="chromium"
+export SAGE_LOCAL="/usr"
 autoload -Uz compinit
 compinit
 
 source /etc/profile.d/autojump.zsh
+
+# command not found hook
+source /usr/share/doc/pkgfile/command-not-found.zsh
+
 # PROMPT
 autoload -U colors promptinit && colors
 PS1="%(0!.%{$fg[red]%}.%{$fg[green]%})%c%{$reset_color%}> "
@@ -27,6 +33,10 @@ PRERPROMPT="%(0?..[%{$fg_no_bold[yellow]%}%?%{$reset_color%}])"
 
 precmd() {
   RPROMPT="$PRERPROMPT"
+}
+
+asmdoc() {
+    r2 -c "?d $@" -q --
 }
 
 zle-keymap-select() {
