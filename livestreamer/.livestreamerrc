@@ -1,3 +1,7 @@
 hls-live-edge=8
 hls-segment-attempts=4
 hls-segment-threads=4
+hds-segment-attempts=5
+hds-segment-threads=5
+hds-segment-timeout=5
+hds-live-edge=20.0

@@ -47,6 +47,9 @@ nmap <leader>w :w!<cr>
 nmap <leader>wq :wq<cr>
 nmap <leader>q :q<cr>
 
+" avoid esc
+imap ,, <Esc>
+
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
@@ -200,6 +203,10 @@ autocmd BufReadPost *
      \ endif
 " Remember info about open buffers on close
 set viminfo^=%
+
+" use F4 to compile code
+:command Compile :! make; false
+map <F4> :Compile <CR>
 
 """
 """ ==> Status line
