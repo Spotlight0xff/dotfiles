@@ -50,6 +50,7 @@ shopt -s autocd
 
 
 export TZ='Europe/Berlin';
+export QT_SELECT=5;
 
 
 ## modified commands ##
@@ -59,7 +60,7 @@ alias df='df -h'
 alias du='du -c -h'
 alias mkdir='mkdir -p -v'
 alias nano='nano -w'
-alias ping='ping -n -c 5'
+#alias ping='ping -n -c 5'
 alias dmesg='dmesg -HL'
 
 
@@ -68,7 +69,6 @@ alias du1='du --max-depth=1'
 alias hist='history | grep'
 alias openport='ss --all --numeric --processes --ipv4 --ipv6'
 alias ..='cd ..'
-alias qmake='qmake-qt4'
 ## privileged access ##
 if [ $UID -ne 0 ]; then
     alias root='sudo -s'
@@ -97,6 +97,7 @@ alias gg='git commit'
 alias gd='git diff'
 alias ga='git add'
 alias gp='git push'
+alias gc='git clone'
 
 # bash options
 export PAGER=most
@@ -104,7 +105,8 @@ export EDITOR=vi
 export SUDO_EDITOR=rvim
 export HISTSIZE=500000
 export HISTFILESIZE=200000
-
+export SAGE_LOCAL="/usr"
+export PATH="/home/spotlight/perl5/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/gems/1.9/bin:/opt/cuda/bin"
 # Compile and execute a C source on the fly
 csource() {
         [[ $1 ]]    || { echo "Missing operand" >&2; return 1; }
