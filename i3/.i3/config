@@ -263,11 +263,8 @@ exec --no-startup-id /home/spotlight/bin/wallpaper.sh &
 # use compton as composite manager
 exec --no-startup-id compton --config ~/.compton.conf -b
 
-# use conky in scratchpad
-exec --no-startup-id conky -c ~/.conky/conky_overlay.conf &
-
-# statusbar conky !! *__*
-exec --no-startup-id conky -c ~/.conky/conky_bar.conf &
+# use conky in scratchpad (use bashscript to select between laptop and fullhd)
+exec --no-startup-id ~/bin/conky_sel.sh &
 
 # notification daemon
 exec --no-startup-id dunst -markup -lh 20 -transparency 20 &
