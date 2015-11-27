@@ -250,14 +250,8 @@ exec_always --no-startup-id ~/bin/sleep_dz.sh
 # set german keyboard (TODO!)
 exec --no-startup-id setxkbmap de &
 
-<<<<<<< HEAD
 # start ownCloud
 exec_always --no-startup-id ~/bin/owncloud.sh &
-=======
-# start dropbox
-#exec_always --no-startup-id dropboxd &
-exec owncloud
->>>>>>> e95e8b4... optimized for fullhd/owncloud and minor changes
 
 # start network manager applet ( no need without systembar :P)
 # exec --no-startup-id nm-applet &
