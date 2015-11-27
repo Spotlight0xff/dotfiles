@@ -20,6 +20,7 @@ for_window [class="Conky"] move scratchpad
 for_window [instance="mutt"] move scratchpad
 for_window [class="dzen2"] floating enable
 for_window [class="Spotify"] border 1pixel
+
 set $mod Mod1
 
 
@@ -59,7 +60,7 @@ bindsym $mod+numbersign [class="Conky"] scratchpad show
 bindsym $mod+KP_Enter [instance="mutt"] scratchpad show
 
 # start a terminal
-bindsym $mod+Return exec urxvtc
+bindsym $mod+Return exec xfce4-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -183,7 +184,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id "/home/spotlight/ownCloud/Code/
 
 
 # lock screen
-bindsym $mod+Control+l exec --no-startup-id ~/bin/lock.sh
+bindsym $mod+Control+l exec --no-startup-id ~/bin/autolock.sh -locknow
 
 # disable lockscreen
 bindsym $mod+Control+Shift+l exec --no-startup-id ~/bin/disable_lock.sh
@@ -195,6 +196,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # start twitch.tv/csgo-scripts
+
 bindsym Control+KP_Delete exec "/home/spotlight/ownCloud/Code/scripts/csgo_twitch.sh"
 # cycle wallpaper
 bindsym Control+KP_Add exec --no-startup-id "pkill wallpaper.sh; /home/spotlight/bin/wallpaper.sh &"
@@ -202,15 +204,12 @@ bindsym Control+KP_Subtract exec --no-startup-id "pkill wallpaper_last.sh; /home
 
 bindsym Control+Delete exec --no-startup-id "pkill wallpaper_del.sh; /home/spotlight/bin/wallpaper_del.sh &"
 
-bindsym Control+space exec --no-startup-id "keepass --auto-type"
+# player ctrl
+bindsym $mod+KP_Right exec --no-startup-id "playerctl --player=spotify next"
+bindsym $mod+KP_Left exec --no-startup-id "playerctl --player=spotify previous"
+bindsym $mod+KP_Begin exec --no-startup-id "playerctl --player=spotify play-pause"
 
 
-
-# window switcher
-#bindsym Shift+underscore exec --no-startup-id "rofi -now -font 'snap 10' -fg '#505050' -bg '#000000' -hlfg '#ffb964' -o 85"
-
-# dmenu
-# bindsym $mod+d exec --no-startup-id "rofi -rnow -font 'snap 10' -fg '#505050' -bg '#000000' -hlfg '#ffffff' -o 85"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -238,33 +237,33 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-#bar {
-#    i3bar_command dzen2
-#    status_command /usr/bin/i3-wsbar
-#}
 
 # autostart
 # set lockscreen & screensaver
-exec --no-startup-id xautolock -time 3 -locker "i3lock -i /home/spotlight/ownCloud/Photos/Wallpaper/wallpaper-1107219_laptop.png" &
-
-# system tray
-# exec --no-startup-id stalonetray
+exec --no-startup-id ~/bin/autolock.sh
 
 
 # fucking awesome bar #2
+bindsym $mod+i exec --no-startup-id /home/spotlight/bin/sleep_dz.sh
 exec_always --no-startup-id ~/bin/sleep_dz.sh 
 
 # set german keyboard (TODO!)
 exec --no-startup-id setxkbmap de &
 
+<<<<<<< HEAD
 # start ownCloud
 exec_always --no-startup-id ~/bin/owncloud.sh &
+=======
+# start dropbox
+#exec_always --no-startup-id dropboxd &
+exec owncloud
+>>>>>>> e95e8b4... optimized for fullhd/owncloud and minor changes
 
 # start network manager applet ( no need without systembar :P)
 # exec --no-startup-id nm-applet &
 
 # set wallpaper (change every 1min)
-exec --no-startup-id /home/spotlight/ownCloud/Code/scripts/wallpaper.sh &
+exec --no-startup-id /home/spotlight/bin/wallpaper.sh &
 
 
 # use compton as composite manager
@@ -280,10 +279,10 @@ exec --no-startup-id conky -c ~/.conky/conky_bar.conf &
 exec --no-startup-id dunst -markup -lh 20 -transparency 20 &
 
 # mutt as scratchpad
-exec --no-startup-id urxvtc -name mutt -e mutt
+#exec --no-startup-id urxvtc -name mutt -e mutt
 
 # devil's pie, window matching
-exec --no-startup-id devilspie -a
+#exec --no-startup-id devilspie -a
 
 # volume notification daemon
 exec --no-startup-id volnoti -t 1
