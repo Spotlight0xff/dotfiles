@@ -47,6 +47,7 @@ nmap <leader>w :w!<cr>
 nmap <leader>wq :wq<cr>
 nmap <leader>q :q<cr>
 
+map <F2> :nohlsearch<cr>
 " avoid esc
 imap ,, <Esc>
 
