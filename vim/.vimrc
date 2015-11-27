@@ -51,8 +51,11 @@ nmap <leader>q :q<cr>
 cmap w!! w !sudo tee > /dev/null %
 
 " Syntastic
-"let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_check_header = 1
 "let g:syntastic_haskell_ghc_mod_exec = 'ghc-mod.sh'
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
 
 " slow multiple_cursors &amp; YCM
 function! Multiple_cursors_before()
