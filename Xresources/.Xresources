@@ -1,0 +1,24 @@
+URxvt.saveLines: 1000
+URxvt.scrollBar: false
+URxvt.foreground: white
+URxvt.secondaryScroll: true
+URxvt.font: xft:Dejavu Sans Mono for Powerline:pixelsize=12
+URxvt.perl-ext-common: default,clipboard,url-select
+URxvt*inheritPixmap: true 
+URxvt*shading: 20
+URxvt*termName: rxvt-unicode
+URxvt.depth: 32
+URxvt*background: [90]#000000
+URxvt.cursorUnderline: 1
+! open URLs w/o mouse
+URxvt.keysym.C-i: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/chromium
+URxvt.url-select.underline: true
+! copy paste
+URxvt.iso14755: False
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+
+
+!! dzen2
+dzen2.font: -*-dejavu sans mono for powerline-*-*-*-*-*-*-*-*-*-*-*-*
