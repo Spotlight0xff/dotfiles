@@ -250,6 +250,9 @@ exec_always --no-startup-id ~/bin/sleep_dz.sh
 # set german keyboard (TODO!)
 exec --no-startup-id setxkbmap de &
 
+# set modmap, disable capslock
+exec --no-startup-id xmodmap ~/.Xmodmap
+
 # start ownCloud
 exec_always --no-startup-id ~/bin/owncloud.sh &
 
