@@ -112,7 +112,7 @@ settings_table = {
         bg_alpha=0.2,
         fg_colour=-1,--0xffffff, -- new options, hacky tho, changes colour dependent on the state
         fg_alpha=0.8,
-        x=920, y=12,
+        x=940, y=12,
         radius=9,
         thickness=5,
         start_angle=0,
@@ -141,6 +141,21 @@ settings_table = {
         fg_colour=0x00ff00,
         fg_alpha=0.8,
         x=300, y=12,
+        radius=9,
+        thickness=5,
+        start_angle=0,
+        end_angle=360
+    },
+
+    {
+        name='exec amixer',
+        arg='-c 0 get Master | grep Mono: | cut -d" " -f6 | tr -c -d "[:digit:]"',
+        max=100,
+        bg_colour=0xffffff,
+        bg_alpha=0.2,
+        fg_colour=-1,--0x00ffff, -- i know, super hacky, but idc...
+        fg_alpha=0.8,
+        x=890, y=12,
         radius=9,
         thickness=5,
         start_angle=0,
@@ -180,6 +195,15 @@ function draw_ring(cr,t,pt)
                fgc = 0x0000FF
            end
        end
+       print(pt['name'])
+       if pt['name'] == "exec amixer" then
+            if conky_parse("${exec amixer -c 0 get Master | grep Mono: | cut -d' ' -f8}") == "[off]" then
+                fgc = 0x999999
+            else
+                fgc = 0x00ffff
+            end
+
+       end
     end
 
 
@@ -215,7 +239,6 @@ function conky_bar_rings()
         
         value=tonumber(str)
         if value == nil then value=0 end
-        
         pct=value/pt['max']
         draw_ring(cr,pct,pt)
         
