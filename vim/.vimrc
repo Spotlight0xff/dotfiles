@@ -14,6 +14,17 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeToggle<cr>
 
 
+" disable arrow keys (ACHIEVE MASSIVE SPEED)
+inoremap  <Up>     <NOP>
+inoremap  <Down>   <NOP>
+inoremap  <Left>   <NOP>
+inoremap  <Right>  <NOP>
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
+
+
 " show taglist with <leader>tl
 map <C-l> :TlistToggle<cr>
 let g:Tlist_GainFocus_On_ToggleOpen = 1
