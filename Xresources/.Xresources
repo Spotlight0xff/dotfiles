@@ -22,3 +22,12 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
 !! dzen2
 dzen2.font: -*-dejavu sans mono for powerline-*-*-*-*-*-*-*-*-*-*-*-*
+
+!! rofi
+rofi.bg: argb:80000000
+rofi.bw: 0
+rofi.fg: white
+rofi.opacity: 80
+rofi.separator-style: solid
+rofi.hide-scrollbar: true
+rofi.bc: black
