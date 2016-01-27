@@ -65,9 +65,6 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show run
-
 bindsym $mod+F12 exec --no-startup-id /home/spotlight/bin/scrot.sh
 
 
@@ -108,6 +105,7 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
+bindsym $mod+c focus child
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -237,3 +235,6 @@ exec --no-startup-id xflux -l 50.783854 -g 6.058316
 
 # unclutter (hide mouse cursor)
 exec --no-startup-id unclutter -jitter 5 -keystroke &
+
+# start rofi in daemon-mode
+exec --no-startup-id rofi -key-run alt+d -key-ssh alt+shift+s
