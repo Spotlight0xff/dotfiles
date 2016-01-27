@@ -62,6 +62,8 @@ alias gg='git commit'
 alias gp='git push'
 alias ga='git add'
 alias gc='git clone'
+alias gd='git diff'
+alias gdc='git diff --cached'
 
 alias less='most'
 
