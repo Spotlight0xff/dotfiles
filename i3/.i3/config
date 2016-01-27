@@ -281,3 +281,7 @@ exec --no-startup-id volnoti -t 1
 
 # f.lux
 exec --no-startup-id xflux -l 50.783854 -g 6.058316
+
+
+# apply xmodmap
+exec --no-startup-id xmodmap ~/.Xmodmap
