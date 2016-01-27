@@ -95,9 +95,14 @@ alias cd..='cd ..'
 alias gs='git status'
 alias gg='git commit'
 alias gd='git diff'
+alias gdc='git diff --cached'
 alias ga='git add'
 alias gp='git push'
 alias gc='git clone'
+
+alias m='make'
+alias mc='make clean'
+alias ma='make all'
 
 # bash options
 export PAGER=most
