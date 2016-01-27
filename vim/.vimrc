@@ -13,10 +13,14 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " start nerdtree with ctrl-n
 map <C-n> :NERDTreeToggle<cr>
 
+let g:NERDCustomDelimiters = {'c': { 'left': '//','rightAlt': '*/', 'leftAlt': '/*' },
+            \ 'cuda':{'left': '//', 'leftAlt': '/*', 'rightAlt': '*/'}}
 
 " show taglist with <leader>tl
 map <C-l> :TlistToggle<cr>
 let g:Tlist_GainFocus_On_ToggleOpen = 1
+let g:Tlist_Close_On_Select = 1
+let g:Tlist_Process_File_Always = 1
 
 " lines of history
 set history=1000
@@ -43,6 +47,7 @@ let mapleader = ","
 let g:mapleader = ","
 
 " fast saving
+nmap <leader>x :x<cr>
 nmap <leader>w :w!<cr>
 nmap <leader>wq :wq<cr>
 nmap <leader>q :q<cr>
@@ -60,6 +65,20 @@ let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
+" collects ctags
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_key_list_previous_completion=['<Up>']
+
+"" Ultisnips
+let g:UltiSnipsExpandTrigger="<c-right>"
+let g:UltiSnipsListSnippets="<c-s-space>"
+
+" use auto-ctags
+let g:auto_ctags=1
+let g:auto_ctags_directory_list = ['.git', '.svn']
+let g:auto_ctags_tags_name = 'tags'
+let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
+let g:auto_ctags_filetype_mode = 1
 
 " slow multiple_cursors &amp; YCM
 function! Multiple_cursors_before()
@@ -206,8 +225,35 @@ autocmd BufReadPost *
 set viminfo^=%
 
 " use F4 to compile code
-:command Compile :! make; false
-map <F4> :Compile <CR>
+" :command Compile :! make; echo $?
+fun! SetMkfile()
+  let filemk = "Makefile"
+  let pathmk = "./"
+  let depth = 1
+  while depth < 4
+    if filereadable(pathmk . filemk)
+      return pathmk
+    endif
+    let depth += 1
+    let pathmk = "../" . pathmk
+  endwhile
+  return "."
+endf
+let g:compiler_gcc_ignore_unmatched_lines = 1
+command! -nargs=* Make | let $mkpath = SetMkfile() | make <args> -C $mkpath | cwindow 3
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+
+" detect cuda as cuda + c++ (to make ycm work)
+autocmd FileType cuda set ft=cuda.c
+
+
+
+map <F3> :Make <CR>
+map <F4> :Make clean <CR>
+map <F5> :cnext <CR>
+map <F6> :cprevious <CR>
+map <F7> :cclose <CR>
 
 """
 """ ==> Status line
