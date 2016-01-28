@@ -1,3 +1,13 @@
+!! Xft Font settings
+Xft.autohint: 0
+Xft.antialias: 1
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.dpi: 96
+Xft.rga: rgb
+Xft.lcdfilter: lcddefault
+
+!! URxvt terminal
 URxvt.saveLines: 1000
 URxvt.scrollBar: false
 URxvt.foreground: white
