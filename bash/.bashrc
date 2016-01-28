@@ -69,6 +69,9 @@ alias du1='du --max-depth=1'
 alias hist='history | grep'
 alias openport='ss --all --numeric --processes --ipv4 --ipv6'
 alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
 ## privileged access ##
 if [ $UID -ne 0 ]; then
     alias root='sudo -s'
