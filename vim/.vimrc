@@ -63,6 +63,7 @@ nmap <leader>w :w!<cr>
 nmap <leader>wq :wq<cr>
 nmap <leader>q :q<cr>
 
+
 map <F2> :nohlsearch<cr>
 " avoid esc
 imap ,, <Esc>
@@ -259,11 +260,9 @@ autocmd QuickFixCmdPost    l* nested lwindow
 autocmd FileType cuda set ft=cuda.c
 
 
-
-map <F3> :Make <CR>
-map <F4> :Make clean <CR>
-map <F5> :cnext <CR>
-map <F6> :cprevious <CR>
+nnoremap <expr> <silent> <F3>   (&diff ? "]c" : ":cnext\<CR>")
+nnoremap <expr> <silent> <S-F3> (&diff ? "[c" : ":cprev\<CR>")
+map <F5> :Make <CR>
 map <F7> :cclose <CR>
 
 """
