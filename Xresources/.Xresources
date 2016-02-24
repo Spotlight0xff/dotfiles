@@ -1,15 +1,16 @@
-URxvt.saveLines: 1000
+URxvt.saveLines: 9000
 URxvt.scrollBar: false
 URxvt.foreground: white
 URxvt.secondaryScroll: true
-URxvt.font: xft:Dejavu Sans Mono for Powerline:pixelsize=12
+URxvt.font: xft:Droid Sans Mono:pixelsize=13
+URxvt.letterSpace: -1
 URxvt.perl-ext-common: default,clipboard,url-select
 URxvt*inheritPixmap: true 
 URxvt*shading: 20
 URxvt*termName: rxvt-unicode
 URxvt.depth: 32
-URxvt*background: [90]#000000
-URxvt.cursorUnderline: 1
+URxvt*background: [50]#000000
+URxvt.cursorUnderline: 0
 ! open URLs w/o mouse
 URxvt.keysym.C-i: perl:url-select:select_next
 URxvt.url-select.launcher: /usr/bin/chromium
@@ -21,7 +22,7 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
 
 !! dzen2
-dzen2.font: -*-dejavu sans mono for powerline-*-*-*-*-*-*-*-*-*-*-*-*
+dzen2.font: Liberation Mono for Powerline:size=14
 
 !! rofi
 rofi.bg: argb:80000000
