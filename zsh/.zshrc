@@ -12,6 +12,9 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' use-ip true
 zstyle ':completion:*' rehash true
 
+bindkey -M vicmd '?' history-incremental-search-backward
+
+
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export KEYTIMEOUT=1
