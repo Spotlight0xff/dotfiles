@@ -5,7 +5,7 @@ set_prompt()
 {
     local last_cmd=$?
     PS1=""
-    RED='\[\e[01;31m\]'
+    RED='\[\e[02;31m\]'
     BLUE='\[\e[01;34m\]'
     WHITE='\[\e[01;37m\]'
     GREEN='\[\e[01;32m\]'
