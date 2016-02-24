@@ -151,11 +151,9 @@ bindsym XF86MonBrightnessUp exec --no-startup-id "/home/spotlight/ownCloud/Code/
 
 
 # lock screen
-bindsym $mod+Control+l exec --no-startup-id ~/bin/autolock.sh -locknow
+bindsym $mod+Control+l exec --no-startup-id ~/bin/lock_desktop.sh
 
-# disable lockscreen
-bindsym $mod+Control+Shift+l exec --no-startup-id ~/bin/disable_lock.sh
-
+bindsym $mod+Control+s exec --no-startup-id systemctl suspend
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
@@ -184,10 +182,10 @@ bindsym $mod+KP_Begin exec --no-startup-id "playerctl --player=spotify play-paus
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym h resize grow width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -199,27 +197,26 @@ bindsym $mod+r mode "resize"
 
 # autostart
 # set lockscreen & screensaver
-exec --no-startup-id ~/bin/autolock.sh
-
+exec --no-startup-id xss-lock -- i3lock -i /home/spotlight/ownCloud/Photos/Wallpaper/wallpaper-1107219.png &
 
 # fucking awesome bar
 bindsym $mod+i exec --no-startup-id /home/spotlight/bin/sleep_dz.sh
-exec_always --no-startup-id ~/bin/sleep_dz.sh 
+exec_always --no-startup-id ~/bin/sleep_dz.sh &
 
 # set german keyboard (TODO!)
 exec --no-startup-id setxkbmap de &
 
 # set modmap, disable capslock
-exec --no-startup-id xmodmap ~/.Xmodmap
+exec --no-startup-id xmodmap ~/.Xmodmap &
 
 # start ownCloud
-exec_always --no-startup-id ~/bin/owncloud.sh &
+#exec_always --no-startup-id ~/bin/owncloud.sh &
 
 # set wallpaper (change every 1min)
 exec --no-startup-id /home/spotlight/bin/wallpaper.sh &
 
 # use compton as composite manager
-exec --no-startup-id compton --config ~/.compton.conf -b
+exec --no-startup-id compton --config ~/.compton.conf -b &
 
 # use conky in scratchpad (use bashscript to select between laptop and fullhd)
 exec --no-startup-id ~/bin/conky_sel.sh &
@@ -228,10 +225,7 @@ exec --no-startup-id ~/bin/conky_sel.sh &
 exec --no-startup-id dunst -markup -lh 20 -transparency 20 &
 
 # volume notification daemon
-exec --no-startup-id volnoti -t 1
-
-# f.lux
-exec --no-startup-id xflux -l 50.783854 -g 6.058316
+exec --no-startup-id volnoti -t 1 &
 
 # apply xmodmap
 exec --no-startup-id xmodmap ~/.Xmodmap

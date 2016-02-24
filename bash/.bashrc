@@ -1,16 +1,6 @@
-
-
-# perl install
-eval `perl -I ~/perl5/lib/perl5 -Mlocal::lib`
-
-# asmdoc
-asmdoc()
-{
-    r2 -c "?d $@" -q --
-}
+# my .bashrc - spotlight0xff
 
 # colored command prompt
-
 set_prompt()
 {
     local last_cmd=$?
@@ -38,60 +28,38 @@ set_prompt()
     PS1+="\$$RESET "
 }
 
-#PROMPT_COMMAND='set_prompt'
-function _update_ps1() {
-    export PS1="$(/home/spotlight/powerline-shell.py --cwd-only $? 2> /dev/null)"
-}
-
-export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-
-# auto "cd" when entering just a path
-shopt -s autocd
-
+PROMPT_COMMAND='set_prompt'
 
 export TZ='Europe/Berlin';
 export QT_SELECT=5;
 
 
-## modified commands ##
+# beauty commands
 alias diff='colordiff'
 alias grep='grep --color=auto'
 alias df='df -h'
 alias du='du -c -h'
 alias mkdir='mkdir -p -v'
 alias nano='nano -w'
-#alias ping='ping -n -c 5'
 alias dmesg='dmesg -HL'
+alias ls='ls -hF --color=auto'
 
 
-## new commands ##
+# lazy commands
 alias du1='du --max-depth=1'
 alias hist='history | grep'
-alias openport='ss --all --numeric --processes --ipv4 --ipv6'
+alias oport='ss --all --numeric --processes --ipv4 --ipv6'
 alias ..='cd ..'
-## privileged access ##
-if [ $UID -ne 0 ]; then
-    alias root='sudo -s'
-    alias reboot='sudo systemctl reboot'
-    alias shutdown='sudo systemctl poweroff'
-    alias poweroff='sudo systemctl poweroff'
-    alias update='yaourt -Syua'
-fi
-
-## ls ##
-alias ls='ls -hF --color=auto'
+alias ...='cd ../..'
+alias ....='cd ../../..' # jeez...
+alias cls='echo -ne "\033c"' # if you *really* want to clear screen ;)
 alias ll='ls -al'
-
-# clears screen
-alias cls='echo -ne "\033c"' 
-
-## make bash error tolerant ##
 alias :q='exit'
 alias :Q='exit'
 alias :x='exit'
 alias cd..='cd ..'
 
-
+# git shortcuts
 alias gs='git status'
 alias gg='git commit'
 alias gd='git diff'
@@ -100,70 +68,62 @@ alias ga='git add'
 alias gp='git push'
 alias gc='git clone'
 
+# make shortcuts
 alias m='make'
 alias mc='make clean'
 alias ma='make all'
 
+# without root
+if [ $UID -ne 0 ]; then
+    alias root='sudo -s'
+    alias reboot='sudo systemctl reboot'
+    alias shutdown='sudo systemctl poweroff'
+    alias poweroff='sudo systemctl poweroff'
+    alias update='yaourt -Syua'
+fi
+
 # bash options
-export PAGER=most
-export EDITOR=vi
+export PAGER=less
+export EDITOR=vim
 export SUDO_EDITOR=rvim
 export HISTSIZE=500000
 export HISTFILESIZE=200000
 export SAGE_LOCAL="/usr"
-export PATH="/home/spotlight/perl5/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/gems/1.9/bin:/opt/cuda/bin"
-# Compile and execute a C source on the fly
-csource() {
-        [[ $1 ]]    || { echo "Missing operand" >&2; return 1; }
-        [[ -r $1 ]] || { printf "File %s does not exist or is not readable\n" "$1" >&2; return 1; }
-	local output_path=${TMPDIR:-/tmp}/${1##*/};
-	gcc "$1" -o "$output_path" && "$output_path";
-	rm "$output_path";
-	return 0;
-}
+export PATH="/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin"
 
+# add CUDA binaries, if available
+if [ -d /opt/cuda/bin ]; then
+    export PATH="$PATH:/opt/cuda/bin"
+fi
 
-note () {
-    # if file doesn't exist, create it
-    if [[ ! -f $HOME/.notes ]]; then
-        touch "$HOME/.notes"
-    fi
+# add ruby bin directory, if available
+RUBYDIR=$(ruby -e 'print Gem.user_dir')
+if [ -d "$RUBYDIR/bin" ]; then
+    export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+fi
 
-    if ! (($#)); then
-        # no arguments, print file
-        cat "$HOME/.notes"
-    elif [[ "$1" == "-c" ]]; then
-        # clear file
-        > "$HOME/.notes"
-    else
-        # add all arguments to file
-        printf "%s\n" "$*" >> "$HOME/.notes"
-    fi
-}
+# packages modules (pacman...)
+if [ -d /usr/lib/perl5/vendor_perl ]; then
+    export PATH="$PATH:/usr/lib/perl5/vendor_perl"
+fi
 
-todo() {
-    if [[ ! -f $HOME/.todo ]]; then
-        touch "$HOME/.todo"
-    fi
+# modules included in core perl distribution
+if [ -d /usr/bin/core_perl ]; then
+    export PATH="$PATH:/usr/bin/core_perl"
+fi
 
-    if ! (($#)); then
-        cat "$HOME/.todo"
-    elif [[ "$1" == "-l" ]]; then
-        nl -b a "$HOME/.todo"
-    elif [[ "$1" == "-c" ]]; then
-        > $HOME/.todo
-    elif [[ "$1" == "-r" ]]; then
-        nl -b a "$HOME/.todo"
-        echo "----------------------------"
-        read -p "Type a number to remove: " number
-        sed -i "$number d" "$HOME/.todo"
-    else
-        printf "%s\n" "$*" >> "$HOME/.todo"
-    fi
-}
-
+# if local perl5 lib is there, install
+if [ -d ~/perl5/ ]; then
+    eval `perl -I ~/perl5/lib/perl5 -Mlocal::lib`
+    export PATH="$PATH:~/perl5/bin"
+fi
 
 calc() {
     echo "scale=3;$@" | bc -l
 }
 
+# asmdoc
+asmdoc()
+{
+    r2 -c "?d $@" -q --
+}
