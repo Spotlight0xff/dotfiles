@@ -2,36 +2,96 @@
 
 
 """
-""" ==> GENERAL
+""" ==> PLUGINS
 """
 
-execute pathogen#infect()
+" Initialize Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
+" Vundle can handle itself
+Plugin 'VundleVim/Vundle.vim' " https://github.com/VundleVim/Vundle.vim
+
+" Plugin list
+Plugin 'scrooloose/nerdcommenter' " https://github.com/scrooloose/nerdcommenter
+Plugin 'scrooloose/nerdtree' " https://github.com/scrooloose/nerdtree
+Plugin 'tpope/vim-fugitive' " https://github.com/tpope/vim-fugitive
+Plugin 'tpope/vim-surround' " https://github.com/tpope/vim-surround
+Plugin 'justinmk/vim-sneak' " https://github.com/justinmk/vim-sneak
+Plugin 'vim-scripts/taglist.vim' " https://github.com/vim-scripts/taglist.vim
+Plugin 'Valloric/YouCompleteMe' " https://github.com/Valloric/YouCompleteMe
+Plugin 'SirVer/ultisnips' " https://github.com/SirVer/ultisnips
+Plugin 'honza/vim-snippets' " https://github.com/honza/vim-snippets
+Plugin 'ctrlpvim/ctrlp.vim' " https://github.com/ctrlpvim/ctrlp.vim
+Plugin 'vim-airline/vim-airline' " https://github.com/vim-airline/vim-airline
+Plugin 'vim-airline/vim-airline-themes' " https://github.com/vim-airline/vim-airline-themes
+Plugin 'alpaca-tc/beautify.vim' " https://github.com/alpaca-tc/beautify.vim
+Plugin 'airblade/vim-gitgutter' " https://github.com/airblade/vim-gitgutter
+Plugin 'jiangmiao/auto-pairs' " https://github.com/jiangmiao/auto-pairs
+Plugin 'raimondi/delimitmate' " https://github.com/raimondi/delimitmate
+
+
+call vundle#end()
+
+"" ==> NERDTree
 " start nerdtree if no files are specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 " start nerdtree with ctrl-n
 map <C-n> :NERDTreeToggle<cr>
 
+
+"" ==> NERDCommenter
 let g:NERDCustomDelimiters = {'c': { 'left': '//','rightAlt': '*/', 'leftAlt': '/*' },
             \ 'cuda':{'left': '//', 'leftAlt': '/*', 'rightAlt': '*/'}}
 
-" disable arrow keys (ACHIEVE MASSIVE SPEED)
-inoremap  <Up>     <NOP>
-inoremap  <Down>   <NOP>
-inoremap  <Left>   <NOP>
-inoremap  <Right>  <NOP>
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
-
-
+"" ==> vim-taglist
 " show taglist with <leader>tl
 map <C-l> :TlistToggle<cr>
+
+" self-explanatory settings
 let g:Tlist_GainFocus_On_ToggleOpen = 1
 let g:Tlist_Close_On_Select = 1
 let g:Tlist_Process_File_Always = 1
+
+"" ==> Ultisnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+"" ==> YouCompleteMe
+" collects ctags
+let g:ycm_collect_identifiers_from_tags_files = 0
+let g:ycm_collect_identifiers_from_comments_and_strings = 0
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
+
+"" disable completion for latex etc.
+let g:ycm_filetype_blacklist = {
+    \ 'gitcommit': 1,
+    \ 'latex': 1,
+    \ 'tex': 1
+    \}
+
+
+" slow multiple_cursors &amp; YCM
+"function! Multiple_cursors_before()
+    "let g:ycm_auto_trigger = 0
+"endfunction
+      
+"function! Multiple_cursors_after()
+    "let g:ycm_auto_trigger = 1
+"endfunction
+
+"""
+""" ==> GENERAL
+"""
+
 
 " lines of history
 set history=1000
@@ -40,9 +100,6 @@ set history=1000
 set number
 
 " automatically remove preview window
-" If you prefer the Omni-Completion tip window to close when a selection is
-" " made, these lines close it on movement in insert mode or when leaving
-" " insert mode
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
@@ -64,41 +121,32 @@ nmap <leader>wq :wq<cr>
 nmap <leader>q :q<cr>
 
 map <F2> :nohlsearch<cr>
+
 " avoid esc
 imap ,, <Esc>
+
+"" write one char (insert/append) in normal mode
+":nnoremap s :exec "normal i".nr2char(getchar())."\e"<CR>
+":nnoremap S :exec "normal a".nr2char(getchar())."\e"<CR>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
-" Syntastic
-let g:syntastic_cpp_check_header = 1
-"let g:syntastic_haskell_ghc_mod_exec = 'ghc-mod.sh'
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-
-" collects ctags
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_key_list_previous_completion=['<Up>']
-
-"" Ultisnips
-let g:UltiSnipsExpandTrigger="<c-right>"
-let g:UltiSnipsListSnippets="<c-s-space>"
-
-" use auto-ctags
-let g:auto_ctags=1
-let g:auto_ctags_directory_list = ['.git', '.svn']
-let g:auto_ctags_tags_name = 'tags'
-let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
-let g:auto_ctags_filetype_mode = 1
-
-" slow multiple_cursors &amp; YCM
-function! Multiple_cursors_before()
-    let g:ycm_auto_trigger = 0
+function AddItem()
+    if searchpair('\\begin{itemize}', '', '\\end{itemize}', 'W')
+        return "\\item "
+    else
+        return ""
+    endif
 endfunction
-      
-function! Multiple_cursors_after()
-    let g:ycm_auto_trigger = 1
-endfunction
+
+inoremap <expr><buffer> <CR> "\r".AddItem()
+nnoremap <expr><buffer> o "o".AddItem()
+nnoremap <expr><buffer> O "O".AddItem()
+
+"" disable indentation for items in itemized env
+let g:tex_indent_items=0
+
 
 """
 """ ==> VIM User interface
@@ -117,7 +165,7 @@ set wildignore=*.o,*~,*.pyc
 set ruler
 
 " height of the cmd bar
-set cmdheight=2
+set cmdheight=1
 
 " a buffer becomes hidden when it is abandoned
 set hid
@@ -164,8 +212,6 @@ set tm=500
 syntax enable
 
 colorscheme desert
-" hi Normal ctermbg=none
-" set background=none
 
 " set utf8 as standard encoding
 set encoding=utf8
@@ -270,18 +316,29 @@ map <F7> :cclose <CR>
 """ ==> Status line
 """
 
-" always show the status line (vim-airline)
+"" ==> vim-airline
+" always show the status line
 set laststatus=2
-let g:airline_powerline_fonts = 1
+let g:airline_theme = 'simple'
+let g:airline_powerline_fonts = 1 
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+
+"" ==> vim-airline (tabline)
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_close_button = 0
+
+set term=xterm " -256color is *too* colorful
 
 
-" Format the status line
-" set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
 
 
-
-"" helpfer functions
+"" helper functions
 function! VisualSelection(direction) range
     let l:saved_reg = @"
     execute "normal! vgvy"
