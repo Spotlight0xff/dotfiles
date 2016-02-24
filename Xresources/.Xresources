@@ -31,7 +31,7 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
 
 !! dzen2
-dzen2.font: -*-dejavu sans mono for powerline-*-*-*-*-*-*-*-*-*-*-*-*
+dzen2.font: -*-Liberation Mono for Powerline-*-*-*-*-18-*-*-*-*-*-*-*
 
 !! rofi
 rofi.bg: argb:80000000
