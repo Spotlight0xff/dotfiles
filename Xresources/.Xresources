@@ -12,7 +12,8 @@ URxvt.saveLines: 9000
 URxvt.scrollBar: false
 URxvt.foreground: white
 URxvt.secondaryScroll: true
-URxvt.font: xft:Droid Sans Mono:pixelsize=13
+!URxvt.font: xft:Droid Sans Mono for Powerline:pixelsize=13
+URxvt.font: xft:Roboto Mono for Powerline:pixelsize=13
 URxvt.letterSpace: -1
 URxvt.perl-ext-common: default,clipboard,url-select
 URxvt*inheritPixmap: true 
