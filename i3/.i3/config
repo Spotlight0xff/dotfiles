@@ -197,23 +197,23 @@ bindsym $mod+r mode "resize"
 
 # autostart
 # set lockscreen & screensaver
-exec --no-startup-id xss-lock -- ~/bin/lock_desktop.sh &
+#exec --no-startup-id xss-lock -- ~/bin/lock_desktop.sh &
 
 # fucking awesome bar
 bindsym $mod+i exec --no-startup-id /home/spotlight/bin/sleep_dz.sh
 exec_always --no-startup-id ~/bin/sleep_dz.sh &
 
 # set german keyboard (TODO!)
-exec --no-startup-id setxkbmap de &
+#exec --no-startup-id setxkbmap de &
 
 # set modmap, disable capslock
-exec_always --no-startup-id xmodmap ~/.Xmodmap &
+#exec_always --no-startup-id xmodmap ~/.Xmodmap &
 
 # start ownCloud
 #exec_always --no-startup-id ~/bin/owncloud.sh &
 
 # set wallpaper (change every 1min)
-exec --no-startup-id /home/spotlight/bin/wallpaper.sh &
+#exec --no-startup-id /home/spotlight/bin/wallpaper.sh &
 
 # use compton as composite manager
 exec --no-startup-id compton --config ~/.compton.conf -b &
@@ -228,7 +228,7 @@ exec --no-startup-id dunst -markup -lh 20 -transparency 20 &
 exec --no-startup-id volnoti -t 1 &
 
 # apply xmodmap
-exec --no-startup-id xmodmap ~/.Xmodmap
+#exec --no-startup-id xmodmap ~/.Xmodmap
 
 # unclutter (hide mouse cursor)
 exec --no-startup-id unclutter -jitter 5 -keystroke &
