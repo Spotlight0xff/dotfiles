@@ -197,7 +197,7 @@ bindsym $mod+r mode "resize"
 
 # autostart
 # set lockscreen & screensaver
-exec --no-startup-id xss-lock -- i3lock -i /home/spotlight/ownCloud/Photos/Wallpaper/wallpaper-1107219.png &
+exec --no-startup-id xss-lock -- ~/bin/lock_desktop.sh &
 
 # fucking awesome bar
 bindsym $mod+i exec --no-startup-id /home/spotlight/bin/sleep_dz.sh
