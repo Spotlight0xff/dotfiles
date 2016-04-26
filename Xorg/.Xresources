@@ -45,7 +45,7 @@ URxvt.keysym.Control-Right: \033[1;5C
 dzen2.font: Liberation Mono for Powerline:size=14
 
 !! rofi
-rofi.bg: argb:80000000
+rofi.bg: black
 rofi.bw: 0
 rofi.fg: white
 rofi.opacity: 80
