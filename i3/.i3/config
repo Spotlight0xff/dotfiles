@@ -49,7 +49,7 @@ bindsym $mod+minus [class="^((?!conky_status).)*$" instance="^((?!mutt).)*$"] sc
 bindsym $mod+numbersign [class="conky_status"] scratchpad show
 
 # show the mutt overlay
-bindsym $mod+KP_Enter [instance="mutt"] scratchpad show
+#bindsym $mod+KP_Enter [instance="mutt"] scratchpad show
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
