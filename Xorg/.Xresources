@@ -33,8 +33,8 @@ URxvt.url-select.launcher: /usr/bin/chromium
 URxvt.url-select.underline: true
 ! copy paste
 URxvt.iso14755: False
-URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.keysym.M-C: perl:clipboard:copy
+URxvt.keysym.M-V: perl:clipboard:paste
 
 
 !! dzen2
