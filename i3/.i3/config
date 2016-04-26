@@ -219,6 +219,3 @@ exec --no-startup-id volnoti -t 1 &
 
 # unclutter (hide mouse cursor)
 exec --no-startup-id unclutter -jitter 5 -idle 2 &
-
-# start rofi in daemon-mode
-#exec --no-startup-id rofi -key-run alt+d -key-ssh alt+shift+s
