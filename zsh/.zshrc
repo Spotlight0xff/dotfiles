@@ -79,3 +79,5 @@ alias pip3update='sudo pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xa
 bindkey -a 'gg' beginning-of-buffer-or-history
 bindkey -a 'g~' vi-oper-swap-case
 bindkey -a G end-of-buffer-or-history
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
