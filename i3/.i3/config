@@ -182,7 +182,7 @@ bindsym $mod+Control+l exec --no-startup-id ~/scripts/lock_desktop.sh
 bindsym $mod+Control+s exec --no-startup-id systemctl suspend
 
 # start twitch.tv/csgo-scripts
-bindsym Control+KP_Delete exec "~/csgo_twitch.sh"
+bindsym Control+KP_Delete exec "~/scripts/csgo_twitch.sh"
 
 # cycle wallpaper
 bindsym Control+KP_Add exec --no-startup-id "pkill wallpaper.sh; ~/scripts/wallpaper.sh &"
