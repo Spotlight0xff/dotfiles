@@ -14,7 +14,7 @@ for_window [class="Firefox"] border 1pixel
 for_window [class="chromium"] border none
 for_window [class="Xfce4-terminal"] border 1pixel
 for_window [class="Steam"] floating enable
-for_window [class="conky_status"] floating enable, border none
+for_window [class="conky_status"] floating enable, border none,move scratchpad
 for_window [class="URxvt"] border 1pixel
 for_window [class="Conky"] move scratchpad
 for_window [instance="mutt"] move scratchpad
@@ -29,17 +29,8 @@ bindsym $mod+Shift+n border normal
 bindsym $mod+Shift+x border none
 bindsym $mod+Shift+o border 1pixel
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
+# Font for window titles
 font pango:Droid Sans Mono 8
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -48,13 +39,11 @@ floating_modifier $mod
 bindsym $mod+Shift+minus move scratchpad
 
 # Show the first scratchpad window ( not conky, Mutt or ncmpcpp)
-bindsym $mod+minus [class="^((?!Conky).)*$" instance="^((?!mutt).)*$"] scratchpad show
+bindsym $mod+minus [class="^((?!conky_status).)*$" instance="^((?!mutt).)*$"] scratchpad show
 
-
-bindsym $mod+KP_Multiply exec --no-startup-id ~/bin/update-system.sh
 
 # show the conky overlay
-bindsym $mod+numbersign [class="Conky"] scratchpad show
+bindsym $mod+numbersign [class="conky_status"] scratchpad show
 
 # show the mutt overlay
 bindsym $mod+KP_Enter [instance="mutt"] scratchpad show
@@ -64,8 +53,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
-bindsym $mod+F12 exec --no-startup-id /home/spotlight/bin/scrot.sh
+bindsym $mod+F12 exec --no-startup-id ~/scripts/scrot.sh
 
 
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
@@ -138,20 +128,20 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 # volume control
 # mute
-bindsym XF86AudioMute exec --no-startup-id "~/ownCloud/Code/scripts/volume_mute.sh"
+bindsym XF86AudioMute exec --no-startup-id "~/scripts/volume_mute.sh"
 # lower volume
-bindsym XF86AudioLowerVolume exec --no-startup-id "~/ownCloud/Code/scripts/volume_lower.sh"
+bindsym XF86AudioLowerVolume exec --no-startup-id "~/scripts/volume_lower.sh"
 # raise volume
-bindsym XF86AudioRaiseVolume exec --no-startup-id "~/ownCloud/Code/scripts/volume_raise.sh"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "~/scripts/volume_raise.sh"
 
 # brightness control
-bindsym XF86MonBrightnessDown exec --no-startup-id "/home/spotlight/ownCloud/Code/scripts/brightness_lower.sh"
-bindsym XF86MonBrightnessUp exec --no-startup-id "/home/spotlight/ownCloud/Code/scripts/brightness_raise.sh"
+bindsym XF86MonBrightnessDown exec --no-startup-id "~/scripts/brightness_lower.sh"
+bindsym XF86MonBrightnessUp exec --no-startup-id "~/scripts/brightness_raise.sh"
 
 
 
 # lock screen
-bindsym $mod+Control+l exec --no-startup-id ~/bin/lock_desktop.sh
+bindsym $mod+Control+l exec --no-startup-id ~/scripts/lock_desktop.sh
 
 bindsym $mod+Control+s exec --no-startup-id systemctl suspend
 # reload the configuration file
@@ -165,13 +155,13 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 
 # start twitch.tv/csgo-scripts
-bindsym Control+KP_Delete exec "/home/spotlight/ownCloud/Code/scripts/csgo_twitch.sh"
+bindsym Control+KP_Delete exec "~/csgo_twitch.sh"
 
 # cycle wallpaper
-bindsym Control+KP_Add exec --no-startup-id "pkill wallpaper.sh; /home/spotlight/bin/wallpaper.sh &"
-bindsym Control+KP_Subtract exec --no-startup-id "pkill wallpaper_last.sh; /home/spotlight/bin/wallpaper_last.sh &"
+bindsym Control+KP_Add exec --no-startup-id "pkill wallpaper.sh; ~/scripts/wallpaper.sh &"
+bindsym Control+KP_Subtract exec --no-startup-id "pkill wallpaper_last.sh; ~/scripts/wallpaper_last.sh &"
 
-bindsym Control+Delete exec --no-startup-id "pkill wallpaper_del.sh; /home/spotlight/bin/wallpaper_del.sh &"
+bindsym Control+Delete exec --no-startup-id "pkill wallpaper_del.sh; ~/scripts/wallpaper_del.sh &"
 
 # player ctrl
 bindsym $mod+KP_Right exec --no-startup-id "playerctl --player=spotify next"
@@ -198,8 +188,8 @@ bindsym $mod+r mode "resize"
 # autostart
 
 # fucking awesome bar
-bindsym $mod+i exec --no-startup-id /home/spotlight/bin/sleep_dz.sh
-exec_always --no-startup-id ~/bin/sleep_dz.sh &
+bindsym $mod+i exec --no-startup-id ~/scripts/sleep_dz.sh
+exec_always --no-startup-id ~/scripts/sleep_dz.sh &
 
 # set german keyboard (TODO!)
 exec --no-startup-id setxkbmap de &
@@ -217,7 +207,7 @@ exec_always --no-startup-id xmodmap ~/.Xmodmap &
 exec --no-startup-id compton --config ~/.compton.conf -b &
 
 # use conky in scratchpad (use bashscript to select between laptop and fullhd)
-exec --no-startup-id ~/bin/conky_sel.sh &
+exec --no-startup-id ~/scripts/conky_sel.sh &
 
 # notification daemon
 exec --no-startup-id dunst -markup -lh 20 -transparency 20 &
@@ -226,7 +216,7 @@ exec --no-startup-id dunst -markup -lh 20 -transparency 20 &
 exec --no-startup-id volnoti -t 1 &
 
 # unclutter (hide mouse cursor)
-exec --no-startup-id unclutter -jitter 5 -keystroke &
+exec --no-startup-id unclutter -jitter 5 -idle 2 &
 
 # start rofi in daemon-mode
-exec --no-startup-id rofi -key-run alt+d -key-ssh alt+shift+s
+#exec --no-startup-id rofi -key-run alt+d -key-ssh alt+shift+s
