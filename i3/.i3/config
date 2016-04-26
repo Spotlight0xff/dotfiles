@@ -225,9 +225,6 @@ exec --no-startup-id dunst -markup -lh 20 -transparency 20 &
 # volume notification daemon
 exec --no-startup-id volnoti -t 1 &
 
-# apply xmodmap
-#exec --no-startup-id xmodmap ~/.Xmodmap
-
 # unclutter (hide mouse cursor)
 exec --no-startup-id unclutter -jitter 5 -keystroke &
 
