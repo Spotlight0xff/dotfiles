@@ -32,6 +32,7 @@ PROMPT_COMMAND='set_prompt'
 
 export TZ='Europe/Berlin';
 export QT_SELECT=5;
+export TERM=xterm
 
 
 # beauty commands

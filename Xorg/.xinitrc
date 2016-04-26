@@ -1,0 +1,23 @@
+# vim: set filetype=sh :
+WM=i3
+XRESOURCES=$HOME/.Xresources
+XMODMAP=$HOME/.Xmodmap
+
+
+
+[ -f $XRESOURCES ] && xrdb $XRESOURCES
+[ -f $XMODMAP ] && xmodmap $XMODMAP
+
+# source scripts in /etc/X11/xinit/xinitrc.d/
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+ for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+  [ -x "$f" ] && . "$f"
+ done
+ unset f
+fi
+
+setxkbmap de &
+$HOME/bin/wallpaper.sh &
+xss-lock -- $HOME/bin/lock_desktop.sh &
+
+exec $WM

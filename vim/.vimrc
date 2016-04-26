@@ -97,7 +97,9 @@ let g:ycm_filetype_blacklist = {
 set history=1000
 
 " enable line numbering
+set relativenumber
 set number
+
 
 " automatically remove preview window
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
@@ -213,6 +215,7 @@ set tm=500
 syntax enable
 
 colorscheme desert
+highlight LineNr ctermfg=grey
 
 " set utf8 as standard encoding
 set encoding=utf8
@@ -318,21 +321,21 @@ map <F7> :cclose <CR>
 "" ==> vim-airline
 " always show the status line
 set laststatus=2
-let g:airline_theme = 'simple'
+let g:airline_theme = 'sol'
 let g:airline_powerline_fonts = 1 
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+"let g:airline_left_sep=''
+"let g:airline_right_sep=''
 
 "" ==> vim-airline (tabline)
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#show_close_button = 0
 
-set term=xterm " -256color is *too* colorful
-
+"set term=xterm " -256color is *too* colorful
+set term=xterm-256color
 
 
 
@@ -367,5 +370,3 @@ function! HasPaste()
     en
     return ''
 endfunction
-
-

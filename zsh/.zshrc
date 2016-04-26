@@ -1,7 +1,7 @@
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
-SAVEHIST=100000
+SAVEHIST=1000000
 setopt appendhistory autocd HIST_IGNORE_DUPS completealiases nohashdirs CORRECT
 unsetopt beep
 bindkey -v
@@ -14,7 +14,7 @@ zstyle ':completion:*' rehash true
 
 bindkey -M vicmd '?' history-incremental-search-backward
 
-
+export LS_COLORS="$LS_COLORS:di=36:ln=31:or=31;1"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export KEYTIMEOUT=1
@@ -23,8 +23,6 @@ export BROWSER="chromium"
 export SAGE_LOCAL="/usr"
 autoload -Uz compinit
 compinit
-
-source /etc/profile.d/autojump.zsh
 
 # command not found hook
 source /usr/share/doc/pkgfile/command-not-found.zsh
