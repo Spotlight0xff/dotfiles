@@ -17,8 +17,8 @@ for_window [class="Spotify"] border 1pixel
 
 
 # Conky
-for_window [class="conky_status"] floating enable, border none,move scratchpad
-for_window [class="Conky"] move scratchpad
+#for_window [class="conky_bar"] floating enable, border none,move scratchpad
+for_window [class="conky_overlay"] move scratchpad, border none
 
 # Font for window titles
 font pango:Droid Sans Mono 8
@@ -43,10 +43,10 @@ bindsym $mod+Shift+o border 1pixel
 bindsym $mod+Shift+minus move scratchpad
 
 # Show the first scratchpad window (but not conky-overlay, nor mutt)
-bindsym $mod+minus [class="^((?!conky_status).)*$" instance="^((?!mutt).)*$"] scratchpad show
+bindsym $mod+minus [class="^((?!conky_overlay).)*$" instance="^((?!mutt).)*$"] scratchpad show
 
 # show the conky overlay
-bindsym $mod+numbersign [class="conky_status"] scratchpad show
+bindsym $mod+numbersign [class="conky_overlay"] scratchpad show
 
 # show the mutt overlay
 #bindsym $mod+KP_Enter [instance="mutt"] scratchpad show
