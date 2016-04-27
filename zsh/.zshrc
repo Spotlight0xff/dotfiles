@@ -13,6 +13,7 @@ zstyle ':completion:*' use-ip true
 zstyle ':completion:*' rehash true
 
 bindkey -M vicmd '?' history-incremental-search-backward
+bindkey "^R" history-incremental-search-backward
 
 export LS_COLORS="$LS_COLORS:di=36:ln=31:or=31;1"
 export LC_ALL=en_US.UTF-8
