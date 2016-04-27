@@ -82,3 +82,5 @@ bindkey -a 'g~' vi-oper-swap-case
 bindkey -a G end-of-buffer-or-history
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
+bindkey "^[OH" beginning-of-line
+bindkey "^[OF" end-of-line
