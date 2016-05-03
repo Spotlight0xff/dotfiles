@@ -13,6 +13,7 @@ set_prompt()
     PS1=""
     RED='\[\e[02;31m\]'
     BLUE='\[\e[01;34m\]'
+    CYAN='\[\e[01;36m\]'
     WHITE='\[\e[01;37m\]'
     GREEN='\[\e[01;32m\]'
     RESET='\[\e[00m\]'
@@ -30,7 +31,8 @@ set_prompt()
         PS1+="$GREEN\u"
     fi
 
-    PS1+=" $BLUE\w "
+    #PS1+=" $BLUE\w "
+    PS1+=" $CYAN\w "
     PS1+="\$$RESET "
 }
 
@@ -39,6 +41,7 @@ PROMPT_COMMAND='history -a; history -c; history -r; set_prompt'
 export TZ='Europe/Berlin';
 export QT_SELECT=5;
 export TERM=xterm
+export LS_COLORS="$LS_COLORS:di=36:ln=31:or=31;1"
 
 
 # beauty commands
