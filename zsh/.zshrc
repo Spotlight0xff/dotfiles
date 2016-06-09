@@ -1,5 +1,5 @@
 HISTFILE=~/.histfile
-HISTSIZE=1000
+HISTSIZE=100000
 SAVEHIST=1000000
 setopt appendhistory autocd HIST_IGNORE_DUPS completealiases nohashdirs CORRECT
 unsetopt beep
