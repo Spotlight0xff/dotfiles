@@ -18,7 +18,7 @@ export LS_COLORS="$LS_COLORS:di=36:ln=31:or=31;1"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export KEYTIMEOUT=1
-export EDITOR="vim"
+export EDITOR="nvim"
 export BROWSER="chromium"
 export SAGE_LOCAL="/usr"
 autoload -Uz compinit
@@ -66,7 +66,8 @@ alias gc='git clone'
 alias gd='git diff'
 alias gdc='git diff --cached'
 
-alias less='most'
+alias vi='nvim'
+alias vim='nvim'
 
 alias msfconsole="msfconsole --quiet -x \"db_connect spotlight@msf\""
 
