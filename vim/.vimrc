@@ -18,17 +18,16 @@ Plugin 'scrooloose/nerdtree' " https://github.com/scrooloose/nerdtree
 Plugin 'tpope/vim-fugitive' " https://github.com/tpope/vim-fugitive
 Plugin 'tpope/vim-surround' " https://github.com/tpope/vim-surround
 Plugin 'justinmk/vim-sneak' " https://github.com/justinmk/vim-sneak
-Plugin 'vim-scripts/taglist.vim' " https://github.com/vim-scripts/taglist.vim
 Plugin 'Valloric/YouCompleteMe' " https://github.com/Valloric/YouCompleteMe
 Plugin 'SirVer/ultisnips' " https://github.com/SirVer/ultisnips
 Plugin 'honza/vim-snippets' " https://github.com/honza/vim-snippets
 Plugin 'ctrlpvim/ctrlp.vim' " https://github.com/ctrlpvim/ctrlp.vim
 Plugin 'vim-airline/vim-airline' " https://github.com/vim-airline/vim-airline
 Plugin 'vim-airline/vim-airline-themes' " https://github.com/vim-airline/vim-airline-themes
-Plugin 'alpaca-tc/beautify.vim' " https://github.com/alpaca-tc/beautify.vim
 Plugin 'airblade/vim-gitgutter' " https://github.com/airblade/vim-gitgutter
-Plugin 'jiangmiao/auto-pairs' " https://github.com/jiangmiao/auto-pairs
-Plugin 'raimondi/delimitmate' " https://github.com/raimondi/delimitmate
+Plugin 'benekastah/neomake' " https://github.com/benekastah/neomake
+Plugin 'xolox/vim-easytags' " https://github.com/xolox/vim-easytags
+Plugin 'xolox/vim-misc' " https://github.com/xolox/vim-misc
 
 
 call vundle#end()
