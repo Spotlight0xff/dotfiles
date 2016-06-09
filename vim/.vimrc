@@ -348,10 +348,6 @@ let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#show_close_button = 0
 
-"set term=xterm " -256color is *too* colorful
-set term=xterm-256color
-
-
 
 
 "" helper functions
