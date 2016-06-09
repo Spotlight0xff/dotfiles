@@ -12,7 +12,7 @@ URxvt.saveLines: 9000
 URxvt.scrollBar: false
 URxvt.foreground: white
 URxvt.secondaryScroll: true
-URxvt*font: xft:Fira Mono:style=Light:size=9
+URxvt*font: xft:Fira Mono:size=9
 ! Decrease the letter space by one pixel
 URxvt*letterSpace: -1
 URxvt.perl-ext-common: default,clipboard,url-select
