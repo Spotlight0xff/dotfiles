@@ -32,6 +32,18 @@ Plugin 'xolox/vim-misc' " https://github.com/xolox/vim-misc
 
 call vundle#end()
 
+let g:easytags_file = '~/.vim/tags'
+"let g:easytags_autorecurse = 1
+let g:easytags_cmd = '/usr/bin/ctags'
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 1
+let g:easytags_always_enabled = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_confirm_extra_conf = 0
+
+
+let g:neomake_cpp_clang_args = ['-x', '-std=c++14', '-Weverything', '-Wformat', '-fsyntax-only', '-iquoteinclude/', '-Wformat-security', '-Wno-shadow']
+
 "" ==> NERDTree
 " start nerdtree if no files are specified
 autocmd StdinReadPre * let s:std_in=1
