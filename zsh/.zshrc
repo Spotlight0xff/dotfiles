@@ -83,5 +83,7 @@ bindkey -a G end-of-buffer-or-history
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[OH" beginning-of-line
+bindkey "^[[7~" beginning-of-line
+bindkey "^[[8~" end-of-line
 bindkey "^[OF" end-of-line
 bindkey "^[[3~" delete-char
