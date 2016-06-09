@@ -1,5 +1,11 @@
 # my .bashrc - spotlight0xff
 
+export HISTCONTROL=ignoredups:erasedups
+export HISTSIZE=100000
+export HISTFILESIZE=100000
+export HISTFILE=~/.histfile
+shopt -s histappend
+
 # colored command prompt
 set_prompt()
 {
@@ -28,7 +34,7 @@ set_prompt()
     PS1+="\$$RESET "
 }
 
-PROMPT_COMMAND='set_prompt'
+PROMPT_COMMAND='history -a; history -c; history -r; set_prompt'
 
 export TZ='Europe/Berlin';
 export QT_SELECT=5;
