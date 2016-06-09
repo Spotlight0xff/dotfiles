@@ -246,9 +246,12 @@ set expandtab
 " be smart using tabs
 set smarttab
 
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+" 1 tab == 2 spaces
+set shiftwidth=2
+set tabstop=2
+
+" no namespace indentation
+set cino=N-s,g1,h1
 
 " linebreak on 500 characters
 set lbr
