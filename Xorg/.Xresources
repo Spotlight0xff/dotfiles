@@ -17,10 +17,9 @@ URxvt*font: xft:Fira Mono:style=Light:size=9
 URxvt*letterSpace: -1
 URxvt.perl-ext-common: default,clipboard,url-select
 URxvt*inheritPixmap: true 
-URxvt*shading: 20
 URxvt*termName: rxvt-unicode
 URxvt.depth: 32
-URxvt*background: [50]#000000
+URxvt.shading: 5
 URxvt.cursorUnderline: 1
 URxvt.color4:           RoyalBlue
 ! open URLs w/o mouse
