@@ -384,3 +384,5 @@ function! HasPaste()
     en
     return ''
 endfunction
+nnoremap <leader>jj :YcmCompleter GoTo<CR>
+set clipboard+=unnamedplus
