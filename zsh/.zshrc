@@ -22,6 +22,9 @@ export KEYTIMEOUT=1
 export EDITOR="vim"
 export BROWSER="chromium"
 export SAGE_LOCAL="/usr"
+export GUROBI_HOME="/opt/gurobi651/linux64"
+export PATH=$PATH:$GUROBI_HOME/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$GUROBI_HOME/lib
 autoload -Uz compinit
 compinit
 
