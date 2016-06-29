@@ -61,7 +61,7 @@ alias vi='nvim'
 alias vim='nvim'
 alias dmesg='dmesg --color=always'
 alias ls='ls --color=auto'
-alias ll='ls -al'
+alias ll='ls -ahl'
 
 # GIT support
 alias gs='git status'
