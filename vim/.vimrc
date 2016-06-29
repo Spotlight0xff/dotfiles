@@ -27,7 +27,6 @@ Plugin 'vim-airline/vim-airline' " https://github.com/vim-airline/vim-airline
 Plugin 'vim-airline/vim-airline-themes' " https://github.com/vim-airline/vim-airline-themes
 Plugin 'alpaca-tc/beautify.vim' " https://github.com/alpaca-tc/beautify.vim
 Plugin 'airblade/vim-gitgutter' " https://github.com/airblade/vim-gitgutter
-Plugin 'jiangmiao/auto-pairs' " https://github.com/jiangmiao/auto-pairs
 Plugin 'raimondi/delimitmate' " https://github.com/raimondi/delimitmate
 
 
