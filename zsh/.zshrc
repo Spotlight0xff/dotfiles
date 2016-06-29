@@ -57,6 +57,8 @@ zle-line-init() {
 zle -N zle-keymap-select
 zle -N zle-line-init
 
+alias vi='nvim'
+alias vim='nvim'
 alias dmesg='dmesg --color=always'
 alias ls='ls --color=auto'
 alias ll='ls -al'
