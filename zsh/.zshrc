@@ -1,6 +1,5 @@
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
+HISTSIZE=100000
 SAVEHIST=1000000
 setopt appendhistory autocd HIST_IGNORE_DUPS completealiases nohashdirs CORRECT
 unsetopt beep
@@ -19,7 +18,7 @@ export LS_COLORS="$LS_COLORS:di=36:ln=31:or=31;1"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export KEYTIMEOUT=1
-export EDITOR="vim"
+export EDITOR="nvim"
 export BROWSER="chromium"
 export SAGE_LOCAL="/usr"
 export GUROBI_HOME="/opt/gurobi651/linux64"
@@ -72,7 +71,8 @@ alias gc='git clone'
 alias gd='git diff'
 alias gdc='git diff --cached'
 
-alias less='most'
+alias vi='nvim'
+alias vim='nvim'
 
 alias msfconsole="msfconsole --quiet -x \"db_connect spotlight@msf\""
 
@@ -88,5 +88,7 @@ bindkey -a G end-of-buffer-or-history
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[OH" beginning-of-line
+bindkey "^[[7~" beginning-of-line
+bindkey "^[[8~" end-of-line
 bindkey "^[OF" end-of-line
 bindkey "^[[3~" delete-char

@@ -12,19 +12,14 @@ URxvt.saveLines: 9000
 URxvt.scrollBar: false
 URxvt.foreground: white
 URxvt.secondaryScroll: true
-!URxvt.font: xft:Roboto Mono for Powerline:pixelsize=13
-URxvt*font:            xft:Liberation Mono for Powerline:size=10
-URxvt*boldFont:        xft:Liberation Mono for Powerline:bold:size=10
-URxvt*italicFont:      xft:Liberation Mono for Powerline:italic:autohint=true:size=10
-URxvt*boldItalicFont:  xft:Liberation Mono for Powerline:bold:italic:autohint=true:size=10
+URxvt*font: xft:Fira Mono:size=9
 ! Decrease the letter space by one pixel
 URxvt*letterSpace: -1
 URxvt.perl-ext-common: default,clipboard,url-select
 URxvt*inheritPixmap: true 
-URxvt*shading: 20
 URxvt*termName: rxvt-unicode
 URxvt.depth: 32
-URxvt*background: [50]#000000
+URxvt.shading: 5
 URxvt.cursorUnderline: 1
 URxvt.color4:           RoyalBlue
 ! open URLs w/o mouse

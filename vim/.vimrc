@@ -18,19 +18,31 @@ Plugin 'scrooloose/nerdtree' " https://github.com/scrooloose/nerdtree
 Plugin 'tpope/vim-fugitive' " https://github.com/tpope/vim-fugitive
 Plugin 'tpope/vim-surround' " https://github.com/tpope/vim-surround
 Plugin 'justinmk/vim-sneak' " https://github.com/justinmk/vim-sneak
-Plugin 'vim-scripts/taglist.vim' " https://github.com/vim-scripts/taglist.vim
 Plugin 'Valloric/YouCompleteMe' " https://github.com/Valloric/YouCompleteMe
 Plugin 'SirVer/ultisnips' " https://github.com/SirVer/ultisnips
 Plugin 'honza/vim-snippets' " https://github.com/honza/vim-snippets
 Plugin 'ctrlpvim/ctrlp.vim' " https://github.com/ctrlpvim/ctrlp.vim
 Plugin 'vim-airline/vim-airline' " https://github.com/vim-airline/vim-airline
 Plugin 'vim-airline/vim-airline-themes' " https://github.com/vim-airline/vim-airline-themes
-Plugin 'alpaca-tc/beautify.vim' " https://github.com/alpaca-tc/beautify.vim
 Plugin 'airblade/vim-gitgutter' " https://github.com/airblade/vim-gitgutter
-Plugin 'raimondi/delimitmate' " https://github.com/raimondi/delimitmate
+Plugin 'benekastah/neomake' " https://github.com/benekastah/neomake
+Plugin 'xolox/vim-easytags' " https://github.com/xolox/vim-easytags
+Plugin 'xolox/vim-misc' " https://github.com/xolox/vim-misc
 
 
 call vundle#end()
+
+let g:easytags_file = '~/.vim/tags'
+"let g:easytags_autorecurse = 1
+let g:easytags_cmd = '/usr/bin/ctags'
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 1
+let g:easytags_always_enabled = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_confirm_extra_conf = 0
+
+
+let g:neomake_cpp_clang_args = ['-x', '-std=c++14', '-Weverything', '-Wformat', '-fsyntax-only', '-iquoteinclude/', '-Wformat-security', '-Wno-shadow']
 
 "" ==> NERDTree
 " start nerdtree if no files are specified
@@ -238,9 +250,8 @@ set smarttab
 set shiftwidth=2
 set tabstop=2
 
-" no namespace indendation
-set cino=N-s
-
+" no namespace indentation
+set cino=N-s,g1,h1
 
 " linebreak on 500 characters
 set lbr
@@ -325,7 +336,7 @@ map <F7> :cclose <CR>
 " always show the status line
 set laststatus=2
 let g:airline_theme = 'sol'
-let g:airline_powerline_fonts = 1 
+let g:airline_powerline_fonts = 0
 "let g:airline_left_sep=''
 "let g:airline_right_sep=''
 
@@ -336,10 +347,6 @@ let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#show_close_button = 0
-
-"set term=xterm " -256color is *too* colorful
-"set term=xterm-256color
-
 
 
 
@@ -373,3 +380,5 @@ function! HasPaste()
     en
     return ''
 endfunction
+nnoremap <leader>jj :YcmCompleter GoTo<CR>
+set clipboard+=unnamedplus
