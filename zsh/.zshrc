@@ -14,11 +14,22 @@ zstyle ':completion:*' rehash true
 bindkey -M vicmd '?' history-incremental-search-backward
 bindkey "^R" history-incremental-search-backward
 
+# 'less' colors for manpage
+export LESS_TERMCAP_mb=$'\e[01;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\e[01;38;5;74m'  # begin bold
+export LESS_TERMCAP_me=$'\e[0m'           # end mode
+export LESS_TERMCAP_se=$'\e[0m'           # end standout-mode
+export LESS_TERMCAP_so=$'\e[38;5;0m\e[48;5;246m' # begin standout-mode - info box ( black on gray)
+export LESS_TERMCAP_ue=$'\e[0m'           # end underline
+export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline
+
 export LS_COLORS="$LS_COLORS:di=36:ln=31:or=31;1"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export KEYTIMEOUT=1
 export EDITOR="nvim"
+export PAGER="less"
+export LESS="--RAW-CONTROL-CHARS"
 export BROWSER="chromium"
 export SAGE_LOCAL="/usr"
 export GUROBI_HOME="/opt/gurobi651/linux64"
