@@ -9,7 +9,7 @@
 
 # Change window borders for some applications
 for_window [class="Firefox"] border 1pixel
-for_window [class="chromium"] border none
+for_window [class="Chromium"] border none
 for_window [class="Xfce4-terminal"] border 1pixel
 for_window [class="URxvt"] border 1pixel
 for_window [class="Spotify"] border 1pixel
