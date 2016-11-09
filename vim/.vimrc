@@ -5,32 +5,30 @@
 """ ==> PLUGINS
 """
 
-" Initialize Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Vundle can handle itself
-Plugin 'VundleVim/Vundle.vim' " https://github.com/VundleVim/Vundle.vim
+call plug#begin('~/.vim/plugged')
 
 " Plugin list
-Plugin 'scrooloose/nerdcommenter' " https://github.com/scrooloose/nerdcommenter
-Plugin 'scrooloose/nerdtree' " https://github.com/scrooloose/nerdtree
-Plugin 'tpope/vim-fugitive' " https://github.com/tpope/vim-fugitive
-Plugin 'tpope/vim-surround' " https://github.com/tpope/vim-surround
-Plugin 'justinmk/vim-sneak' " https://github.com/justinmk/vim-sneak
-Plugin 'Valloric/YouCompleteMe' " https://github.com/Valloric/YouCompleteMe
-Plugin 'SirVer/ultisnips' " https://github.com/SirVer/ultisnips
-Plugin 'honza/vim-snippets' " https://github.com/honza/vim-snippets
-Plugin 'ctrlpvim/ctrlp.vim' " https://github.com/ctrlpvim/ctrlp.vim
-Plugin 'vim-airline/vim-airline' " https://github.com/vim-airline/vim-airline
-Plugin 'vim-airline/vim-airline-themes' " https://github.com/vim-airline/vim-airline-themes
-Plugin 'airblade/vim-gitgutter' " https://github.com/airblade/vim-gitgutter
-Plugin 'benekastah/neomake' " https://github.com/benekastah/neomake
-Plugin 'xolox/vim-easytags' " https://github.com/xolox/vim-easytags
-Plugin 'xolox/vim-misc' " https://github.com/xolox/vim-misc
+Plug 'scrooloose/nerdcommenter' " https://github.com/scrooloose/nerdcommenter
+Plug 'scrooloose/nerdtree' " https://github.com/scrooloose/nerdtree
+"Plug 'tpope/vim-fugitive' " https://github.com/tpope/vim-fugitive
+"Plug 'tpope/vim-surround' " https://github.com/tpope/vim-surround
+Plug 'justinmk/vim-sneak' " https://github.com/justinmk/vim-sneak
+"Plug 'Valloric/YouCompleteMe' " https://github.com/Valloric/YouCompleteMe
+Plug 'SirVer/ultisnips' " https://github.com/SirVer/ultisnips
+"Plug 'honza/vim-snippets' " https://github.com/honza/vim-snippets
+"Plug 'ctrlpvim/ctrlp.vim' " https://github.com/ctrlpvim/ctrlp.vim
+Plug 'vim-airline/vim-airline' " https://github.com/vim-airline/vim-airline
+Plug 'vim-airline/vim-airline-themes' " https://github.com/vim-airline/vim-airline-themes
+Plug 'airblade/vim-gitgutter' " https://github.com/airblade/vim-gitgutter
+"Plug 'benekastah/neomake' " https://github.com/benekastah/neomake
+"Plug 'xolox/vim-easytags' " https://github.com/xolox/vim-easytags
+"Plug 'xolox/vim-misc' " https://github.com/xolox/vim-misc
+"Plug 'vim-scripts/taglist.vim' " https://github.com/vim-scripts/taglist.vim
+"Plug 'jalcine/cmake.vim' " https://github.com/jalcine/cmake.vim
 
+"Plug 'editorconfig/editorconfig-vim' " https://github.com/editorconfig/editorconfig-vim
 
-call vundle#end()
+call plug#end()
 
 let g:easytags_file = '~/.vim/tags'
 "let g:easytags_autorecurse = 1
