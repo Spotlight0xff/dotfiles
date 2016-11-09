@@ -17,5 +17,7 @@ fi
 
 $HOME/scripts/wallpaper.sh &
 xss-lock -- $HOME/scripts/lock_desktop.sh &
+export QT_STYLE_OVERRIDE='gtk2' # needs qt5-styleplugins, qt5 apps should have gtk look ;)
+
 
 exec $WM

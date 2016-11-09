@@ -30,6 +30,7 @@ Plug 'airblade/vim-gitgutter' " https://github.com/airblade/vim-gitgutter
 
 call plug#end()
 
+
 let g:easytags_file = '~/.vim/tags'
 "let g:easytags_autorecurse = 1
 let g:easytags_cmd = '/usr/bin/ctags'

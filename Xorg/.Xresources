@@ -1,10 +1,10 @@
 !! Xft Font settings
 Xft.autohint: 0
 Xft.antialias: 1
-Xft.hinting: true
-Xft.hintstyle: hintslight
-Xft.dpi: 96
-Xft.rga: rgb
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+!Xft.dpi: 96
+Xft.rga: rgba
 Xft.lcdfilter: lcddefault
 
 *background: #222222
@@ -15,8 +15,6 @@ URxvt.saveLines: 9000
 URxvt.scrollBar: false
 URxvt.secondaryScroll: true
 URxvt*font: xft:Noto Mono:size=9
-! Decrease the letter space by one pixel
-URxvt*letterSpace: -1
 URxvt.perl-ext-common: default,clipboard,url-select
 URxvt*inheritPixmap: true 
 URxvt*termName: rxvt-unicode
@@ -25,17 +23,18 @@ URxvt.shading: 5
 URxvt.cursorUnderline: 1
 URxvt.color4:           RoyalBlue
 ! open URLs w/o mouse
-URxvt.keysym.C-i: perl:url-select:select_next
+!URxvt.keysym.C-i: perl:url-select:select_next
 URxvt.url-select.launcher: /usr/bin/chromium
 URxvt.url-select.underline: true
+URxvt*buffered: false
 ! copy paste
-URxvt.iso14755: False
-URxvt.keysym.M-C: perl:clipboard:copy
-URxvt.keysym.M-V: perl:clipboard:paste
-URxvt.keysym.Control-Up: \033[1;5A
-URxvt.keysym.Control-Down: \033[1;5B
-URxvt.keysym.Control-Left: \033[1;5D
-URxvt.keysym.Control-Right: \033[1;5C
+!URxvt.iso14755: False
+!URxvt.keysym.M-C: perl:clipboard:copy
+!URxvt.keysym.M-V: perl:clipboard:paste
+!URxvt.keysym.Control-Up: \033[1;5A
+!URxvt.keysym.Control-Down: \033[1;5B
+!URxvt.keysym.Control-Left: \033[1;5D
+!URxvt.keysym.Control-Right: \033[1;5C
 
 
 !! dzen2
