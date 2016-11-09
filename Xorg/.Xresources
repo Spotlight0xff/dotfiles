@@ -7,6 +7,9 @@ Xft.dpi: 96
 Xft.rga: rgb
 Xft.lcdfilter: lcddefault
 
+*background: #222222
+*foreground: #cccccc
+
 !! URxvt settings
 URxvt.saveLines: 9000
 URxvt.scrollBar: false
