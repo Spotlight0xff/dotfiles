@@ -52,7 +52,7 @@ bindsym $mod+numbersign [class="conky_overlay"] scratchpad show
 #bindsym $mod+KP_Enter [instance="mutt"] scratchpad show
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvtc
 
 # kill focused window
 bindsym $mod+Shift+q kill
