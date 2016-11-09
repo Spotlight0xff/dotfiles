@@ -90,12 +90,16 @@ alias vim='nvim'
 
 alias msfconsole="msfconsole --quiet -x \"db_connect spotlight@msf\""
 
+# select the only device by default
+alias kdeconnect-cli='kdeconnect-cli --device $(\kdeconnect-cli --list-available --id-only)'
+alias con='kdeconnect-cli'
+
 alias urldecode='python2.7 -c "import sys, urllib as ul; \
         print ul.unquote_plus(sys.argv[1])"'
 alias urlencode='python2.7 -c "import sys, urllib as ul; \
         print ul.quote_plus(sys.argv[1])"'
 
-alias pip3update='sudo pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
+alias pip3update='sudo pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip install -U'
 bindkey -a 'gg' beginning-of-buffer-or-history
 bindkey -a 'g~' vi-oper-swap-case
 bindkey -a G end-of-buffer-or-history
