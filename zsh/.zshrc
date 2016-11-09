@@ -24,6 +24,8 @@ export LESS_TERMCAP_ue=$'\e[0m'           # end underline
 export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline
 
 export LS_COLORS="$LS_COLORS:di=36:ln=31:or=31;1"
+export YAOURT_COLORS='nb=1:pkg=0;33:installed=1:votes=1:popularity=1:orphan=0;35:od=1;31' # better readability
+export QT_STYLE_OVERRIDE='gtk2' # needs qt5-styleplugins, qt5 apps should have gtk look ;)
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export KEYTIMEOUT=1
