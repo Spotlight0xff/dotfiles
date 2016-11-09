@@ -42,6 +42,12 @@ let g:ycm_confirm_extra_conf = 0
 
 let g:neomake_cpp_clang_args = ['-x', '-std=c++14', '-Weverything', '-Wformat', '-fsyntax-only', '-iquoteinclude/', '-Wformat-security', '-Wno-shadow']
 
+
+"" disable indentation in python files on comments
+autocmd BufRead *.py inoremap # X<c-h>#<space>
+
+
+
 "" ==> NERDTree
 " start nerdtree if no files are specified
 autocmd StdinReadPre * let s:std_in=1
