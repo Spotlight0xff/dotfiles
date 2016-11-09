@@ -138,6 +138,7 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+bindsym $mod+shift+e exec ~/scripts/rename_workspace.sh
 
 
 
