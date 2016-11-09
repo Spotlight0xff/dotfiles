@@ -232,9 +232,11 @@ syntax enable
 colorscheme desert
 highlight LineNr ctermfg=grey
 
-" set utf8 as standard encoding
-set encoding=utf8
-set fileencodings=utf-8
+" set utf8 as standard encoding (for default-vim)
+if !has('nvim')
+  set encoding=utf8
+  set fileencodings=utf-8
+endif
 " use unix as the standard file type
 set ffs=unix,dos,mac
 
