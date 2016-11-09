@@ -150,7 +150,7 @@ imap ,, <Esc>
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
-function AddItem()
+function! AddItem()
     if searchpair('\\begin{itemize}', '', '\\end{itemize}', 'W')
         return "\\item "
     else
