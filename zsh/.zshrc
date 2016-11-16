@@ -13,6 +13,7 @@ zstyle ':completion:*' rehash true
 
 bindkey -M vicmd '?' history-incremental-search-backward
 bindkey "^R" history-incremental-search-backward
+export TERMINFO="rxvt-unicode"
 
 # 'less' colors for manpage
 export LESS_TERMCAP_mb=$'\e[01;31m'       # begin blinking
