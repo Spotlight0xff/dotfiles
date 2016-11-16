@@ -190,7 +190,10 @@ bindsym Control+KP_Add exec --no-startup-id "pkill wallpaper.sh; ~/scripts/wallp
 bindsym Control+KP_Subtract exec --no-startup-id "pkill wallpaper_last.sh; ~/scripts/wallpaper_last.sh &"
 bindsym Control+Delete exec --no-startup-id "pkill wallpaper_del.sh; ~/scripts/wallpaper_del.sh &"
 
-###
+bindsym $mod+p exec --no-startup-id rofi-pass
+bindsym $mod+shift+p exec --no-startup-id "~/scripts/passmenu.sh --type"
+
+
 ### Autostart applications
 ###
 
