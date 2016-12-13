@@ -36,7 +36,8 @@ set_prompt()
     PS1+="\$$RESET "
 }
 
-PROMPT_COMMAND='history -a; history -c; history -r; set_prompt'
+PROMPT_COMMAND='set_prompt'
+#PROMPT_COMMAND='history -a; history -c; history -r; set_prompt'
 
 export TZ='Europe/Berlin';
 export QT_SELECT=5;
