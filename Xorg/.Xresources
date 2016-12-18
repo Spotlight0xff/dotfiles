@@ -13,13 +13,12 @@ Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
 
 !! URxvt settings
-URxvt*font: xft:Noto Mono:size=9
+URxvt*font: xft:Source Code Pro for Powerline:size=10
 URxvt.buffered: false
 URxvt.color4:           RoyalBlue
 URxvt.cursorUnderline: 1
 URxvt.depth: 32
 URxvt.inheritPixmap: true
-URxvt.letterSpace: -1
 URxvt.perl-ext-common:
 URxvt.perl-ext:
 URxvt.saveLines: 9000
