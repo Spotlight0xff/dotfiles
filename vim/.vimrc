@@ -23,7 +23,7 @@ Plug 'airblade/vim-gitgutter' " https://github.com/airblade/vim-gitgutter
 "Plug 'benekastah/neomake' " https://github.com/benekastah/neomake
 "Plug 'xolox/vim-easytags' " https://github.com/xolox/vim-easytags
 "Plug 'xolox/vim-misc' " https://github.com/xolox/vim-misc
-"Plug 'vim-scripts/taglist.vim' " https://github.com/vim-scripts/taglist.vim
+Plug 'vim-scripts/taglist.vim' " https://github.com/vim-scripts/taglist.vim
 "Plug 'jalcine/cmake.vim' " https://github.com/jalcine/cmake.vim
 
 "Plug 'editorconfig/editorconfig-vim' " https://github.com/editorconfig/editorconfig-vim
@@ -343,9 +343,7 @@ map <F7> :cclose <CR>
 " always show the status line
 set laststatus=2
 let g:airline_theme = 'sol'
-let g:airline_powerline_fonts = 0
-"let g:airline_left_sep=''
-"let g:airline_right_sep=''
+let g:airline_powerline_fonts = 1
 
 "" ==> vim-airline (tabline)
 "let g:airline#extensions#tabline#enabled = 1
