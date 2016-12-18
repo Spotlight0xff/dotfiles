@@ -329,6 +329,10 @@ autocmd QuickFixCmdPost    l* nested lwindow
 " detect cuda as cuda + c++ (to make ycm work)
 autocmd FileType cuda set ft=cuda.c
 
+" set cursor pos to first line
+autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
+
+
 
 nnoremap <expr> <silent> <F3>   (&diff ? "]c" : ":cnext\<CR>")
 nnoremap <expr> <silent> <S-F3> (&diff ? "[c" : ":cprev\<CR>")
@@ -342,7 +346,7 @@ map <F7> :cclose <CR>
 "" ==> vim-airline
 " always show the status line
 set laststatus=2
-let g:airline_theme = 'sol'
+let g:airline_theme = 'base16_default'
 let g:airline_powerline_fonts = 1
 
 "" ==> vim-airline (tabline)
