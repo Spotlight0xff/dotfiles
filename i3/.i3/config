@@ -206,9 +206,6 @@ exec --no-startup-id setxkbmap de &
 # set modmap, disable capslock
 exec_always --no-startup-id xmodmap ~/.Xmodmap &
 
-# set wallpaper (change every 1min)
-#exec --no-startup-id /home/spotlight/bin/wallpaper.sh &
-
 # use compton as composite manager
 exec --no-startup-id compton --config ~/.compton.conf -b &
 
