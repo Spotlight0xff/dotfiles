@@ -1,48 +1,40 @@
-!! Xft Font settings
-Xft.autohint: 0
-Xft.antialias: 1
-Xft.hinting: 1
-Xft.hintstyle: hintfull
-!Xft.dpi: 96
-Xft.rga: rgba
-Xft.lcdfilter: lcddefault
-
+!! default settings
 *background: #222222
 *foreground: #cccccc
 
+
+!! Xft Font settings
+Xft.antialias: 1
+Xft.autohint: 0
+Xft.dpi: 96
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
+
 !! URxvt settings
+URxvt*font: xft:Noto Mono:size=9
+URxvt.buffered: false
+URxvt.color4:           RoyalBlue
+URxvt.cursorUnderline: 1
+URxvt.depth: 32
+URxvt.inheritPixmap: true
+URxvt.letterSpace: -1
+URxvt.perl-ext-common:
+URxvt.perl-ext:
 URxvt.saveLines: 9000
 URxvt.scrollBar: false
 URxvt.secondaryScroll: true
-URxvt*font: xft:Noto Mono:size=9
-URxvt.perl-ext-common: default,clipboard,url-select
-URxvt*inheritPixmap: true 
-URxvt*termName: rxvt-unicode
-URxvt.depth: 32
 URxvt.shading: 5
-URxvt.cursorUnderline: 1
-URxvt.color4:           RoyalBlue
-! open URLs w/o mouse
-!URxvt.keysym.C-i: perl:url-select:select_next
-URxvt.url-select.launcher: /usr/bin/chromium
-URxvt.url-select.underline: true
-URxvt*buffered: false
-! copy paste
-!URxvt.iso14755: False
-!URxvt.keysym.M-C: perl:clipboard:copy
-!URxvt.keysym.M-V: perl:clipboard:paste
-!URxvt.keysym.Control-Up: \033[1;5A
-!URxvt.keysym.Control-Down: \033[1;5B
-!URxvt.keysym.Control-Left: \033[1;5D
-!URxvt.keysym.Control-Right: \033[1;5C
-
+URxvt.termName: rxvt-unicode
 
 !! dzen2
 dzen2.font: Liberation Mono for Powerline:size=14
 
+
 !! rofi
 rofi.color-enabled: true
-rofi.color-window: argb:b5000000, argb:b5000000, 0
 rofi.color-normal: argb:00000000, white, argb:00000000, argb:b5586e75, white
+rofi.color-window: argb:b5000000, argb:b5000000, 0
 rofi.hide-scrollbar: true
 rofi.separator-style: none
