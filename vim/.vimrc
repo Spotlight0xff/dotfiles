@@ -61,8 +61,10 @@ map <C-n> :NERDTreeToggle<cr>
 
 
 "" ==> NERDCommenter
-let g:NERDCustomDelimiters = {'c': { 'left': '//','rightAlt': '*/', 'leftAlt': '/*' },
-            \ 'cuda':{'left': '//', 'leftAlt': '/*', 'rightAlt': '*/'}}
+let g:NERDCustomDelimiters = {
+      \'c': { 'left': '//','rightAlt': '*/', 'leftAlt': '/*' },
+      \'glsl': { 'left': '//','rightAlt': '*/', 'leftAlt': '/*' },
+      \'cuda':{'left': '//', 'leftAlt': '/*', 'rightAlt': '*/'}}
 
 "" ==> vim-taglist
 " show taglist with <leader>tl
