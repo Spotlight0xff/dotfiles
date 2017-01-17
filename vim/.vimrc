@@ -143,7 +143,7 @@ nmap <leader>wq :wq<cr>
 nmap <leader>q :q<cr>
 
 
-map <F2> :nohlsearch<cr>
+map <S-F2> :nohlsearch<cr>
 
 " avoid esc
 imap ,, <Esc>
@@ -396,3 +396,54 @@ function! HasPaste()
 endfunction
 nnoremap <leader>jj :YcmCompleter GoTo<CR>
 set clipboard+=unnamedplus
+
+fun! LNext(prev)
+    try
+        try
+            if a:prev | lprev | else | lnext | endif
+        catch /^Vim\%((\a\+)\)\=:E553/
+            if a:prev | llast | else | lfirst | endif
+        catch /^Vim\%((\a\+)\)\=:E776/
+        endtry
+    catch /^Vim\%((\a\+)\)\=:E42/
+    endtry
+endfun
+
+nnoremap <silent> <F1> :call LNext(1)<CR>
+nnoremap <silent> <F2> :call LNext(0)<CR>
+
+nnoremap <silent> <c-w>z :wincmd z<cr>:cclose<cr>:lclose<cr>
+
+
+augroup QuickfixStatus
+  au! BufWinEnter quickfix setlocal 
+        \ statusline=%t\ [%{g:asyncrun_status}]\ %{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}\ %=%-15(%l,%c%V%)\ %P
+augroup END
+
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+
+
+
+set splitbelow
+" automatically open qfix
+augroup MyGroup
+    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+augroup END
+
+"nnoremap <F5> :AsyncRun -post=:clist<bar>:silent\ !notify-send\ -u\ critical\ 'Compilation\ done' make<CR>
+nnoremap <F5> :AsyncRun -cwd=build -post=:clist make<cr>
+nnoremap <F6> :split term://./run.sh; i3-msg 'workspace back_and_forth'<cr>
+
+" Put plugins and dictionaries in this dir (also on Windows)
+let vimDir = '$HOME/.vim'
+let &runtimepath.=','.vimDir
+
+" Keep undo history across sessions by storing it in a file
+if has('persistent_undo')
+  let myUndoDir = expand(vimDir . '/undodir')
+  " Create dirs
+  call system('mkdir ' . vimDir)
+  call system('mkdir ' . myUndoDir)
+  let &undodir = myUndoDir
+  set undofile
+endif
