@@ -25,6 +25,7 @@ Plug 'benekastah/neomake' " https://github.com/benekastah/neomake
 "Plug 'xolox/vim-easytags' " https://github.com/xolox/vim-easytags
 "Plug 'xolox/vim-misc' " https://github.com/xolox/vim-misc
 Plug 'vim-scripts/taglist.vim' " https://github.com/vim-scripts/taglist.vim
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'jalcine/cmake.vim' " https://github.com/jalcine/cmake.vim
 
 "Plug 'editorconfig/editorconfig-vim' " https://github.com/editorconfig/editorconfig-vim

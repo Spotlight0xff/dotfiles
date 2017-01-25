@@ -138,3 +138,5 @@ asmdoc()
 {
     r2 -c "?d $@" -q --
 }
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
