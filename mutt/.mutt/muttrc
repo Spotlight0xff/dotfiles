@@ -4,11 +4,30 @@ set mail_check = 60
 set mbox_type=Maildir
 set folder=~/Mail
 set folder_format="%2C %t %N %8s %d %f"  # what I settled on
+
+
+# SSL hardening
+set ssl_force_tls=yes
+set ssl_starttls=yes
+set ssl_use_sslv2=no
+set ssl_use_sslv3=no
+set ssl_use_tlsv1=no
+set ssl_use_tlsv1_1=no
+set ssl_use_tlsv1_2=yes
+set ssl_verify_dates=yes
+set ssl_verify_host=yes
+
+
+# sidebar
 set sidebar_visible=yes
 set sidebar_width=20
-mailboxes +Public +Public/INBOX + +Private +Private/INBOX  * *  +Dev +Dev/INBOX *______ +RWTH +Student/INBOX
+
+set folder = "~/.maildir"
+source ~/.mutt/mailboxes
+set spoolfile = "+public/INBOX"
+
 # notmuch
-set nm_default_uri = "notmuch:///home/spotlight/Mail"
+#set nm_default_uri = "notmuch:///home/spotlight/Mail"
 
 
 
@@ -19,31 +38,13 @@ bind index <right> sidebar-next         # got to next folder in sidebar
 bind index <space> sidebar-open         # open selected folder from sidebar
 
 macro index b '<enter-command>toggle sidebar_visible<enter>'
-macro index b '<enter-command>toggle sidebar_visible<enter>'
 
 
-macro index <F8> \
-"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
-<shell-escape>notmuch-mutt -r --prompt search<enter>\
-<change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
-<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
-      "notmuch: search mail"
+#macro index <F8> \
+#"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+#<shell-escape>notmuch-mutt -r --prompt search<enter>\
+#<change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
+#<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+      #"notmuch: search mail"
 
-
-## public/spam email (default)
-source ~/.mutt/mutt_public
-folder-hook Public 'source ~/.mutt/mutt_public'
-
-
-## private email
-folder-hook Private 'source ~/.mutt/mutt_private'
-
-
-## development email
-folder-hook Dev 'source ~/.mutt/mutt_dev'
-
-## student email
-folder-hook Student 'source ~/.mutt/mutt_student'
-
-
-source '~/.mutt/colors'
+source '/usr/share/doc/mutt/colors/solarized/mutt-colors-solarized-dark-16.muttrc'

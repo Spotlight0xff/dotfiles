@@ -1,4 +1,0 @@
-set from = "andre.merboldt@gmail.com"
-set spoolfile = "+Private/[Google Mail].Alle Nachrichten"
-set mbox = "+Private/archive"
-set postponed = "+Private/[Google Mail].Ent&APw-rfe"
