@@ -43,6 +43,8 @@ compinit
 
 # command not found hook
 source /usr/share/doc/pkgfile/command-not-found.zsh
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
 
 # PROMPT
 autoload -U colors promptinit && colors
