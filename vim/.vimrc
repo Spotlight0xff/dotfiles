@@ -91,6 +91,9 @@ let g:ycm_collect_identifiers_from_tags_files = 0
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
+" use ultisnips
+let g:ycm_use_ultisnips_completer = 1
+
 
 "" disable completion for latex etc.
 let g:ycm_filetype_blacklist = {
