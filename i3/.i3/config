@@ -140,6 +140,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 bindsym $mod+shift+e exec ~/scripts/rename_workspace.sh
 
+mode "passthrough" {
+  bindsym mod4+Escape mode "default"
+}
+bindsym mod4+Escape mode "passthrough"
+
 
 
 
