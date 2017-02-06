@@ -242,6 +242,10 @@ map <leader>tm :tabmove
 map <leader>.  :tabprevious<cr>
 map <leader>-  :tabnext<cr>
 
+" fold by indent level, but don't open by default
+set foldmethod=indent
+set nofoldenable
+
 
 """ ==> Filetype specific hacks
 
