@@ -1,3 +1,4 @@
+" vim: set fdm=manual
 " Ultimate .vimrc
 
 
