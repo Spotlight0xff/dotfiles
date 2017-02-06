@@ -1,9 +1,17 @@
 " Ultimate .vimrc
 
 
-"""
-""" ==> PLUGINS
-"""
+""" ==> Plugin list
+
+" Install vim-plug:
+"
+" For Neovim
+" curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"
+" For vim:
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 call plug#begin('~/.vim/plugged')
 
@@ -57,102 +65,14 @@ Plug 'tikhomirov/vim-glsl'
 
 call plug#end()
 
-
-let g:easytags_file = '~/.vim/tags'
-"let g:easytags_autorecurse = 1
-let g:easytags_cmd = '/usr/bin/ctags'
-let g:easytags_async = 1
-let g:easytags_dynamic_files = 1
-let g:easytags_always_enabled = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_confirm_extra_conf = 0
-
-
-let g:neomake_cpp_clang_args = ['-x', '-std=c++14', '-Weverything', '-Wformat', '-fsyntax-only', '-iquoteinclude/', '-Wformat-security', '-Wno-shadow']
-
-
-"" disable indentation in python files on comments
-autocmd BufRead *.py inoremap # X<c-h>#<space>
-
-
-
-"" ==> NERDTree
-" start nerdtree if no files are specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" start nerdtree with ctrl-n
-map <C-n> :NERDTreeToggle<cr>
-
-
-"" ==> NERDCommenter
-let g:NERDCustomDelimiters = {
-      \'c': { 'left': '//','rightAlt': '*/', 'leftAlt': '/*' },
-      \'glsl': { 'left': '//','rightAlt': '*/', 'leftAlt': '/*' },
-      \'cuda':{'left': '//', 'leftAlt': '/*', 'rightAlt': '*/'}}
-
-"" ==> vim-taglist
-" show taglist with <leader>tl
-map <C-l> :TlistToggle<cr>
-
-" self-explanatory settings
-let g:Tlist_GainFocus_On_ToggleOpen = 1
-let g:Tlist_Close_On_Select = 1
-let g:Tlist_Process_File_Always = 1
-
-"" ==> Ultisnips
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-"" ==> YouCompleteMe
-" collects ctags
-let g:ycm_collect_identifiers_from_tags_files = 0
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
-let g:ycm_key_list_select_completion=[]
-let g:ycm_key_list_previous_completion=[]
-" use ultisnips
-let g:ycm_use_ultisnips_completer = 1
-
-
-"" disable completion for latex etc.
-let g:ycm_filetype_blacklist = {
-    \ 'gitcommit': 1,
-    \ 'latex': 1,
-    \ 'tex': 1
-    \}
-
-
-" slow multiple_cursors &amp; YCM
-"function! Multiple_cursors_before()
-    "let g:ycm_auto_trigger = 0
-"endfunction
-
-"function! Multiple_cursors_after()
-    "let g:ycm_auto_trigger = 1
-"endfunction
-
-"""
-""" ==> GENERAL
-"""
-
+""" ==> General
 
 " lines of history
 set history=1000
 
-" enable line numbering
+" enable both absolute and relative line numbering
 set relativenumber
 set number
-
-
-" automatically remove preview window
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " enable filetype plugins
 filetype plugin on
@@ -171,50 +91,13 @@ nmap <leader>w :w!<cr>
 nmap <leader>wq :wq<cr>
 nmap <leader>q :q<cr>
 
-
+" remove search highlights
 map <S-F2> :nohlsearch<cr>
 
 " avoid esc
 imap ,, <Esc>
 
-"" write one char (insert/append) in normal mode
-":nnoremap s :exec "normal i".nr2char(getchar())."\e"<CR>
-":nnoremap S :exec "normal a".nr2char(getchar())."\e"<CR>
-
-" Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee > /dev/null %
-
-
-"""
-""" ==> Lazy hacks
-"""
-
-" automatically add \item in latex itemize env
-function! AddItem()
-    if searchpair('\\begin{itemize}', '', '\\end{itemize}', 'W')
-        return "\\item "
-    else
-        return ""
-    endif
-endfunction
-
-function! EnableTexItemEnv()
-  inoremap <expr><buffer> <CR> "\r".AddItem()
-  nnoremap <expr><buffer> o "o".AddItem()
-  nnoremap <expr><buffer> O "O".AddItem()
-endfunction
-
-" but only if we are in *.tex
-autocmd BufNewFile,BufRead *.tex call EnableTexItemEnv()
-
-
-"" disable indentation for items in itemized env
-let g:tex_indent_items=0
-
-
-"""
-""" ==> VIM User interface
-"""
+""" ==> User interface
 
 " set 7 lines to the cursor - when moving vertically using jk
 set so=7
@@ -268,9 +151,30 @@ set novisualbell
 set t_vb=
 set tm=500
 
-"""
+" Put plugins and dictionaries in this dir (also on Windows)
+let vimDir = '$HOME/.vim'
+let &runtimepath.=','.vimDir
+
+" Keep undo history across sessions by storing it in a file
+if has('persistent_undo')
+  let myUndoDir = expand(vimDir . '/undodir')
+  " Create dirs
+  call system('mkdir ' . vimDir)
+  call system('mkdir ' . myUndoDir)
+  let &undodir = myUndoDir
+  set undofile
+endif
+
+" Remember info about open buffers on close
+set viminfo^=%
+
+" Using ALWAYS clipboard, for all operations
+set clipboard+=unnamedplus
+
+" :split below current window
+set splitbelow
+
 """ ==> Colors and Fonts
-"""
 
 " enable syntax highlighting
 syntax enable
@@ -278,19 +182,9 @@ syntax enable
 colorscheme desert
 highlight LineNr ctermfg=grey
 
-" set utf8 as standard encoding (for default-vim)
-if !has('nvim')
-  set encoding=utf8
-  set fileencodings=utf-8
-endif
-" use unix as the standard file type
-set ffs=unix,dos,mac
 
 
-
-"""
 """ ==> Text, tab & indent related
-"""
 
 " use spaces instead of tabs
 set expandtab
@@ -313,17 +207,21 @@ set ai " auto indent
 set si " smart indent
 set wrap " wrap lines
 
-"""
-""" ==> Visual mode
-"""
 
-" in visual mode pressing + or # searches for the current selection
-vnoremap <silent> + :call VisualSelection('f')<cr>
-vnoremap <silent> # :call VisualSelection('b')<cr>
+" set utf8 as standard encoding (for default-vim)
+if !has('nvim')
+  set encoding=utf8
+  set fileencodings=utf-8
+endif
+" use unix as the standard file type
+set ffs=unix,dos,mac
 
-"""
-""" ==> Moving around (tabs, windows, ...)
-"""
+
+
+""" ==> Navigation in code and windows/tabs
+
+" always status line
+set laststatus=2
 
 " thread long lines as break lines
 map j gj
@@ -343,53 +241,51 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>.  :tabprevious<cr>
 map <leader>-  :tabnext<cr>
-" Return to last edit position when opening files (You want this!)
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
-" Remember info about open buffers on close
-set viminfo^=%
 
-" use F4 to compile code
-" :command Compile :! make; echo $?
-fun! SetMkfile()
-  let filemk = "Makefile"
-  let pathmk = "./"
-  let depth = 1
-  while depth < 4
-    if filereadable(pathmk . filemk)
-      return pathmk
+
+""" ==> Filetype specific hacks
+
+" automatically add \item in latex itemize env
+function! AddItem()
+    if searchpair('\\begin{itemize}', '', '\\end{itemize}', 'W')
+        return "\\item "
+    else
+        return ""
     endif
-    let depth += 1
-    let pathmk = "../" . pathmk
-  endwhile
-  return "."
-endf
-let g:compiler_gcc_ignore_unmatched_lines = 1
-command! -nargs=* Make | let $mkpath = SetMkfile() | make <args> -C $mkpath | cwindow 3
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost    l* nested lwindow
+endfunction
+
+function! EnableTexItemEnv()
+  inoremap <expr><buffer> <CR> "\r".AddItem()
+  nnoremap <expr><buffer> o "o".AddItem()
+  nnoremap <expr><buffer> O "O".AddItem()
+endfunction
+
+" but only if we are in *.tex
+autocmd BufNewFile,BufRead *.tex call EnableTexItemEnv()
+
+"-------------------------------------------------------------------
+
+" set cursor pos to first line of git commit
+au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
 " detect cuda as cuda + c++ (to make ycm work)
 autocmd FileType cuda set ft=cuda.c
 
-" set cursor pos to first line
-au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+" disable indentation in python files on comments
+autocmd BufRead *.py inoremap # X<c-h>#<space>
 
 
+""" ==> Terminal
+" :terminal in Neovim
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
 
 
-nnoremap <expr> <silent> <F3>   (&diff ? "]c" : ":cnext\<CR>")
-nnoremap <expr> <silent> <S-F3> (&diff ? "[c" : ":cprev\<CR>")
+""" ==> Compilation (+Error navigation)
 map <F5> :Neomake <CR>
-map <F7> :cclose <CR>
-
-" TODO: make it do cnext or lnext based on which I want :)
-"map ]q :cnext<CR>
-"map [q :cprev<CR>
-map ]q :lnext<cr>
-map [q :lprev<cr>
 
 " open quickfix window after make
 autocmd QuickFixCmdPost [^l]* nested cwindow
@@ -397,72 +293,8 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 " same for Neomake
 let g:neomake_open_list=2
 
-" and close it easily
+" close any quickfix- or locationlist window
 nnoremap <silent> <c-w>z :wincmd z<cr>:cclose<cr>:lclose<cr>
-
-
-"""
-""" ==> Status line
-"""
-
-"" ==> vim-airline
-" always show the status line
-set laststatus=2
-let g:airline_theme = 'base16_default'
-let g:airline_powerline_fonts = 1
-
-"" ==> vim-airline (tabline)
-"let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#neomake#enabled = 1
-
-" AsyncRun.vim
-let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
-
-
-augroup QuickfixStatus
-  au! BufWinEnter quickfix setlocal
-        \ statusline=%t\ [%{g:asyncrun_status}]\ %{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}\ %=%-15(%l,%c%V%)\ %P
-augroup END
-
-
-
-"" helper functions
-function! VisualSelection(direction) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
-
-
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
-endfunction
-nnoremap <leader>jj :YcmCompleter GoTo<CR>
-set clipboard+=unnamedplus
 
 fun! LNext(prev)
     try
@@ -476,63 +308,153 @@ fun! LNext(prev)
     endtry
 endfun
 
-nnoremap <silent> <F1> :call LNext(1)<CR>
-nnoremap <silent> <F2> :call LNext(0)<CR>
+nnoremap <silent> ]q :call LNext(1)<CR>
+nnoremap <silent> [q :call LNext(0)<CR>
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
 
-nnoremap <silent> <c-w>z :wincmd z<cr>:cclose<cr>:lclose<cr>
 
+
+
+""" ==> Lazy hacks
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+
+" Return to last edit position when opening files
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+"--------------------------------------------------------------
+" automatically remove preview window
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+"------------------------------------------------------------------
+" restore view automatically
+set viewoptions-=options
+function! MakeViewCheck()
+    if has('quickfix') && &buftype =~ 'nofile'
+        " Buffer is marked as not a file
+        return 0
+    endif
+    if empty(glob(expand('%:p')))
+        " File does not exist on disk
+        return 0
+    endif
+    if len($TEMP) && expand('%:p:h') == $TEMP
+        " We're in a temp dir
+        return 0
+    endif
+    if len($TMP) && expand('%:p:h') == $TMP
+        " Also in temp dir
+        return 0
+    endif
+    return 1
+endfunction
+augroup vimrcAutoView
+    autocmd!
+    " Autosave & Load Views.
+    autocmd BufWritePost,BufLeave,WinLeave ?* if MakeViewCheck() | mkview | endif
+    autocmd BufWinEnter ?* if MakeViewCheck() | silent loadview | endif
+augroup end
+
+
+
+
+
+
+
+
+""" ==> Plugin settings
+
+"" ==> YouCompleteMe
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
+" collects ctags
+let g:ycm_collect_identifiers_from_tags_files = 0
+let g:ycm_collect_identifiers_from_comments_and_strings = 0
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
+" use ultisnips
+let g:ycm_use_ultisnips_completer = 1
+
+
+"" disable completion for latex etc.
+let g:ycm_filetype_blacklist = {
+    \ 'gitcommit': 1,
+    \ 'latex': 1,
+    \ 'tex': 1
+    \}
+" Goto using jj
+noremap <leader>jj :YcmCompleter GoTo<CR>
+
+"" ==> NeoMake
+let g:neomake_cpp_clang_args = ['-x', '-std=c++14', '-Weverything', '-Wformat', '-fsyntax-only', '-iquoteinclude/', '-Wformat-security', '-Wno-shadow']
+
+
+"" ==> NERDTree
+" start nerdtree if no files are specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" start nerdtree with ctrl-n
+map <C-n> :NERDTreeToggle<cr>
+
+"" ==> NERDCommenter
+let g:NERDCustomDelimiters = {
+      \'c': { 'left': '//','rightAlt': '*/', 'leftAlt': '/*' },
+      \'glsl': { 'left': '//','rightAlt': '*/', 'leftAlt': '/*' },
+      \'cuda':{'left': '//', 'leftAlt': '/*', 'rightAlt': '*/'}}
+
+"" ==> vim-taglist
+" show taglist with <Ctrl>-L
+map <C-l> :TlistToggle<cr>
+
+" self-explanatory settings
+let g:Tlist_GainFocus_On_ToggleOpen = 1
+let g:Tlist_Close_On_Select = 1
+let g:Tlist_Process_File_Always = 1
+
+"" ==> Ultisnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+"" ==> AsyncRun.vim
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+
+augroup MyGroup
+    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+augroup END
 
 augroup QuickfixStatus
   au! BufWinEnter quickfix setlocal
         \ statusline=%t\ [%{g:asyncrun_status}]\ %{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}\ %=%-15(%l,%c%V%)\ %P
 augroup END
 
-let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+"" ==> vim-airline
+" always show the status line
+let g:airline_theme = 'base16_default'
+let g:airline_powerline_fonts = 1
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#neomake#enabled = 1
 
 
-
-set splitbelow
-" automatically open qfix
-tnoremap <Esc> <C-\><C-n>
-tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-
-augroup MyGroup
-    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
-augroup END
-
-"nnoremap <F5> :AsyncRun -post=:clist<bar>:silent\ !notify-send\ -u\ critical\ 'Compilation\ done' make<CR>
-nnoremap <F5> :AsyncRun -cwd=build -post=:clist make<cr>
-nnoremap <F6> :split term://./run.sh; i3-msg 'workspace back_and_forth'<cr>
-
-" Put plugins and dictionaries in this dir (also on Windows)
-let vimDir = '$HOME/.vim'
-let &runtimepath.=','.vimDir
-
-" Keep undo history across sessions by storing it in a file
-if has('persistent_undo')
-  let myUndoDir = expand(vimDir . '/undodir')
-  " Create dirs
-  call system('mkdir ' . vimDir)
-  call system('mkdir ' . myUndoDir)
-  let &undodir = myUndoDir
-  set undofile
-endif
-
-nnoremap <F5> :AsyncRun make -C build<CR>
-nnoremap <F6> :!./build/render
-nnoremap <silent> <F1> :try<bar>:try<bar>lnext<bar>catch /^Vim\%((\a\+)\)\=:E553/<bar>lfirst<bar>catch/^Vim\%((\a\+)\)\=:E776/<bar>endtry<bar>catch /^Vim\%((\a\+)\)\=:E42/<bar>endtry<cr>
- nnoremap <silent> <F2> :try<bar>:try<bar>lprev<bar>catch /^Vim\%((\a\+)\)\=:E553/<bar>llast<bar>catch/^Vim\%((\a\+)\)\=:E776/<bar>endtry<bar>catch /^Vim\%((\a\+)\)\=:E42/<bar>endtry<cr>
- set splitbelow
-
-" git fugitive
+"" ==> vim-fugitive
 nnoremap <leader>ga :Git add %:p<CR><CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit -v -q<CR>
@@ -548,3 +470,5 @@ nnoremap <leader>gb :Git branch<Space>
 nnoremap <leader>go :Git checkout<Space>
 nnoremap <leader>gps :Dispatch! git push<CR>
 nnoremap <leader>gpl :Dispatch! git pull<CR>
+
+
