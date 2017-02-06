@@ -20,7 +20,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdcommenter'
 
 " sidebar for files
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 
 " adds some missing motions for vim
 Plug 'justinmk/vim-sneak'
