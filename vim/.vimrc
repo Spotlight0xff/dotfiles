@@ -348,8 +348,24 @@ au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
 nnoremap <expr> <silent> <F3>   (&diff ? "]c" : ":cnext\<CR>")
 nnoremap <expr> <silent> <S-F3> (&diff ? "[c" : ":cprev\<CR>")
-map <F5> :Make <CR>
+map <F5> :Neomake <CR>
 map <F7> :cclose <CR>
+
+" TODO: make it do cnext or lnext based on which I want :)
+"map ]q :cnext<CR>
+"map [q :cprev<CR>
+map ]q :lnext<cr>
+map [q :lprev<cr>
+
+" open quickfix window after make
+autocmd QuickFixCmdPost [^l]* nested cwindow
+
+" same for Neomake
+let g:neomake_open_list=2
+
+" and close it easily
+nnoremap <silent> <c-w>z :wincmd z<cr>:cclose<cr>:lclose<cr>
+
 
 """
 """ ==> Status line
@@ -368,6 +384,16 @@ let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#neomake#enabled = 1
+
+" AsyncRun.vim
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+
+
+augroup QuickfixStatus
+  au! BufWinEnter quickfix setlocal 
+        \ statusline=%t\ [%{g:asyncrun_status}]\ %{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}\ %=%-15(%l,%c%V%)\ %P
+augroup END
 
 
 
@@ -433,6 +459,17 @@ let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status
 
 set splitbelow
 " automatically open qfix
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+
 augroup MyGroup
     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
 augroup END
@@ -454,3 +491,26 @@ if has('persistent_undo')
   let &undodir = myUndoDir
   set undofile
 endif
+
+nnoremap <F5> :AsyncRun make -C build<CR>
+nnoremap <F6> :!./build/render
+nnoremap <silent> <F1> :try<bar>:try<bar>lnext<bar>catch /^Vim\%((\a\+)\)\=:E553/<bar>lfirst<bar>catch/^Vim\%((\a\+)\)\=:E776/<bar>endtry<bar>catch /^Vim\%((\a\+)\)\=:E42/<bar>endtry<cr>
+ nnoremap <silent> <F2> :try<bar>:try<bar>lprev<bar>catch /^Vim\%((\a\+)\)\=:E553/<bar>llast<bar>catch/^Vim\%((\a\+)\)\=:E776/<bar>endtry<bar>catch /^Vim\%((\a\+)\)\=:E42/<bar>endtry<cr>
+ set splitbelow
+
+" git fugitive
+nnoremap <leader>ga :Git add %:p<CR><CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit -v -q<CR>
+nnoremap <leader>gt :Gcommit -v -q %:p<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>ge :Gedit<CR>
+nnoremap <leader>gr :Gread<CR>
+nnoremap <leader>gw :Gwrite<CR><CR>
+nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <leader>gp :Ggrep<Space>
+nnoremap <leader>gm :Gmove<Space>
+nnoremap <leader>gb :Git branch<Space>
+nnoremap <leader>go :Git checkout<Space>
+nnoremap <leader>gps :Dispatch! git push<CR>
+nnoremap <leader>gpl :Dispatch! git pull<CR>
