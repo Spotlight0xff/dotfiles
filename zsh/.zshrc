@@ -1,7 +1,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=1000000
-setopt appendhistory autocd HIST_IGNORE_DUPS completealiases nohashdirs CORRECT
+setopt appendhistory autocd HIST_IGNORE_DUPS nohashdirs CORRECT
 unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
