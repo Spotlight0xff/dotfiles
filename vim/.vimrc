@@ -56,6 +56,9 @@ Plug 'skywind3000/asyncrun.vim'
 " GLSL language support
 Plug 'tikhomirov/vim-glsl'
 
+" restore views automatically
+Plug 'vim-scripts/restore_view.vim'
+
 """ DISABLED
 "Plug 'editorconfig/editorconfig-vim'
 "Plug 'ctrlpvim/ctrlp.vim'
@@ -174,6 +177,8 @@ set clipboard+=unnamedplus
 
 " :split below current window
 set splitbelow
+
+set viewoptions=cursor,folds,slash,unix
 
 """ ==> Colors and Fonts
 
@@ -336,36 +341,6 @@ autocmd BufReadPost *
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 "------------------------------------------------------------------
-" restore view automatically
-set viewoptions-=options
-function! MakeViewCheck()
-    if has('quickfix') && &buftype =~ 'nofile'
-        " Buffer is marked as not a file
-        return 0
-    endif
-    if empty(glob(expand('%:p')))
-        " File does not exist on disk
-        return 0
-    endif
-    if len($TEMP) && expand('%:p:h') == $TEMP
-        " We're in a temp dir
-        return 0
-    endif
-    if len($TMP) && expand('%:p:h') == $TMP
-        " Also in temp dir
-        return 0
-    endif
-    return 1
-endfunction
-augroup vimrcAutoView
-    autocmd!
-    " Autosave & Load Views.
-    autocmd BufWritePost,BufLeave,WinLeave ?* if MakeViewCheck() | mkview | endif
-    autocmd BufWinEnter ?* if MakeViewCheck() | silent loadview | endif
-augroup end
-
-
-
 
 
 
