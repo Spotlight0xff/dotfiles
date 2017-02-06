@@ -117,3 +117,5 @@ bindkey "^[[8~" end-of-line
 bindkey "^[OF" end-of-line
 bindkey "^[[3~" delete-char
 bindkey '\e.' insert-last-word
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
