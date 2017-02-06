@@ -1,4 +1,4 @@
-" Ultimate .vimrc 
+" Ultimate .vimrc
 
 
 """
@@ -132,7 +132,7 @@ let g:ycm_filetype_blacklist = {
 "function! Multiple_cursors_before()
     "let g:ycm_auto_trigger = 0
 "endfunction
-      
+
 "function! Multiple_cursors_after()
     "let g:ycm_auto_trigger = 1
 "endfunction
@@ -413,7 +413,7 @@ let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status
 
 
 augroup QuickfixStatus
-  au! BufWinEnter quickfix setlocal 
+  au! BufWinEnter quickfix setlocal
         \ statusline=%t\ [%{g:asyncrun_status}]\ %{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}\ %=%-15(%l,%c%V%)\ %P
 augroup END
 
@@ -471,7 +471,7 @@ nnoremap <silent> <c-w>z :wincmd z<cr>:cclose<cr>:lclose<cr>
 
 
 augroup QuickfixStatus
-  au! BufWinEnter quickfix setlocal 
+  au! BufWinEnter quickfix setlocal
         \ statusline=%t\ [%{g:asyncrun_status}]\ %{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}\ %=%-15(%l,%c%V%)\ %P
 augroup END
 
