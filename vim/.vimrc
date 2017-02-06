@@ -7,31 +7,53 @@
 
 call plug#begin('~/.vim/plugged')
 
-" Plugin list
-Plug 'scrooloose/nerdcommenter' " https://github.com/scrooloose/nerdcommenter
-Plug 'scrooloose/nerdtree' " https://github.com/scrooloose/nerdtree
-"Plug 'tpope/vim-fugitive' " https://github.com/tpope/vim-fugitive
-"Plug 'tpope/vim-surround' " https://github.com/tpope/vim-surround
-Plug 'justinmk/vim-sneak' " https://github.com/justinmk/vim-sneak
+""" Plugin list
+" helps with writing comments fast
+Plug 'scrooloose/nerdcommenter'
+
+" sidebar for files
+Plug 'scrooloose/nerdtree'
+
+" adds some missing motions for vim
+Plug 'justinmk/vim-sneak'
+
+" code completion engines
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-Plug 'SirVer/ultisnips' " https://github.com/SirVer/ultisnips
-Plug 'honza/vim-snippets' " https://github.com/honza/vim-snippets
-"Plug 'ctrlpvim/ctrlp.vim' " https://github.com/ctrlpvim/ctrlp.vim
-Plug 'vim-airline/vim-airline' " https://github.com/vim-airline/vim-airline
-Plug 'vim-airline/vim-airline-themes' " https://github.com/vim-airline/vim-airline-themes
-Plug 'airblade/vim-gitgutter' " https://github.com/airblade/vim-gitgutter
-Plug 'benekastah/neomake' " https://github.com/benekastah/neomake
-"Plug 'xolox/vim-easytags' " https://github.com/xolox/vim-easytags
-"Plug 'xolox/vim-misc' " https://github.com/xolox/vim-misc
-Plug 'vim-scripts/taglist.vim' " https://github.com/vim-scripts/taglist.vim
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'jalcine/cmake.vim' " https://github.com/jalcine/cmake.vim
-Plug 'skywind3000/asyncrun.vim'
-Plug 'tikhomirov/vim-glsl'
+
+" snippets engine, integrates into YCM
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+" sexy looking statusline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" handle git in vim directly
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
-"Plug 'editorconfig/editorconfig-vim' " https://github.com/editorconfig/editorconfig-vim
+" Asynchronous make
+Plug 'benekastah/neomake'
+
+" taglist as sidebar window
+Plug 'vim-scripts/taglist.vim'
+
+" ctrl-p on steriods
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" asynchronous command execution
+Plug 'skywind3000/asyncrun.vim'
+
+" GLSL language support
 Plug 'tikhomirov/vim-glsl'
+
+""" DISABLED
+"Plug 'editorconfig/editorconfig-vim'
+"Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'jalcine/cmake.vim'
+"Plug 'xolox/vim-easytags'
+"Plug 'xolox/vim-misc'
+"Plug 'tpope/vim-surround'
 
 call plug#end()
 
