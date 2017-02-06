@@ -184,6 +184,12 @@ imap ,, <Esc>
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
+
+"""
+""" ==> Lazy hacks
+"""
+
+" automatically add \item in latex itemize env
 function! AddItem()
     if searchpair('\\begin{itemize}', '', '\\end{itemize}', 'W')
         return "\\item "
@@ -192,9 +198,15 @@ function! AddItem()
     endif
 endfunction
 
-inoremap <expr><buffer> <CR> "\r".AddItem()
-nnoremap <expr><buffer> o "o".AddItem()
-nnoremap <expr><buffer> O "O".AddItem()
+function! EnableTexItemEnv()
+  inoremap <expr><buffer> <CR> "\r".AddItem()
+  nnoremap <expr><buffer> o "o".AddItem()
+  nnoremap <expr><buffer> O "O".AddItem()
+endfunction
+
+" but only if we are in *.tex
+autocmd BufNewFile,BufRead *.tex call EnableTexItemEnv()
+
 
 "" disable indentation for items in itemized env
 let g:tex_indent_items=0
