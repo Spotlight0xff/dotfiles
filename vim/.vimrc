@@ -13,10 +13,9 @@ Plug 'scrooloose/nerdtree' " https://github.com/scrooloose/nerdtree
 "Plug 'tpope/vim-fugitive' " https://github.com/tpope/vim-fugitive
 "Plug 'tpope/vim-surround' " https://github.com/tpope/vim-surround
 Plug 'justinmk/vim-sneak' " https://github.com/justinmk/vim-sneak
-Plug 'skywind3000/asyncrun.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' } " https://github.com/Valloric/YouCompleteMe
-"Plug 'SirVer/ultisnips' " https://github.com/SirVer/ultisnips
-"Plug 'honza/vim-snippets' " https://github.com/honza/vim-snippets
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'SirVer/ultisnips' " https://github.com/SirVer/ultisnips
+Plug 'honza/vim-snippets' " https://github.com/honza/vim-snippets
 "Plug 'ctrlpvim/ctrlp.vim' " https://github.com/ctrlpvim/ctrlp.vim
 Plug 'vim-airline/vim-airline' " https://github.com/vim-airline/vim-airline
 Plug 'vim-airline/vim-airline-themes' " https://github.com/vim-airline/vim-airline-themes
@@ -27,6 +26,9 @@ Plug 'benekastah/neomake' " https://github.com/benekastah/neomake
 Plug 'vim-scripts/taglist.vim' " https://github.com/vim-scripts/taglist.vim
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'jalcine/cmake.vim' " https://github.com/jalcine/cmake.vim
+Plug 'skywind3000/asyncrun.vim'
+Plug 'tikhomirov/vim-glsl'
+Plug 'tpope/vim-fugitive'
 
 "Plug 'editorconfig/editorconfig-vim' " https://github.com/editorconfig/editorconfig-vim
 Plug 'tikhomirov/vim-glsl'
@@ -81,6 +83,7 @@ let g:Tlist_Process_File_Always = 1
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
