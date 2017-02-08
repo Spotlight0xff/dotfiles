@@ -139,4 +139,5 @@ asmdoc()
     r2 -c "?d $@" -q --
 }
 
+export FZF_DEFAULT_OPTS="--no-extended --exact"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
