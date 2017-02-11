@@ -153,6 +153,8 @@ bindsym mod4+Escape mode "passthrough"
 ### Application shortcuts
 ###
 
+bindcode Shift+64 exec --no-startup-id ~/scripts/keyboard_layout.sh > /home/spotlight/test
+
 # rofi application launcher
 bindsym $mod+d exec --no-startup-id rofi -show run
 
