@@ -47,10 +47,11 @@ font-0 = Droid Sans for Powerline:fontformat=truetype:size=10:antialias=true;0
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 font-3 = FontAwesome:size=10;0
+font-4 = fixed:size=10;0
 
-modules-left = wlan filesystem cpu memory coretemps
+modules-left = wlan coretemps
 modules-center = hamster i3
-modules-right = spotify volume xkeyboard pkg date powermenu
+modules-right = spotify volume xkeyboard pkg date
 
 ;tray-position = right
 ;tray-padding = 2
@@ -76,18 +77,10 @@ label = %title:0:30:...%
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
-
 [module/filesystem]
 type = internal/fs
 interval = 25
@@ -137,11 +130,11 @@ label-urgent-padding = 2
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+;icon-prev = 
+;icon-stop = 
+;icon-play = 
+;icon-pause = 
+;icon-next = 
 
 label-song-maxlen = 25
 label-song-ellipsis = true
@@ -189,9 +182,10 @@ type = internal/network
 interface = wlp6s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
-label-connected = %essid%
+;format-connected = <ramp-signal> <label-connected>
+format-connected = <label-connected>
+;format-connected-underline = #9f78e1
+label-connected = "%{A1:nm-connection-editor:} %essid%%{A}"
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
@@ -199,12 +193,20 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+;ramp-signal-0 = 1
+;ramp-signal-1 = 2
+;ramp-signal-2 = 3
+;ramp-signal-3 = 4
+;ramp-signal-4 = 5
+;ramp-signal-0 = 
+;ramp-signal-1 = 
+;ramp-signal-2 = 
+;ramp-signal-2-font = 2
+;ramp-signal-3 = 
+;ramp-signal-3-font = 2
+;ramp-signal-4 = 
+;ramp-signal-4-font = 2
+;ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
@@ -212,7 +214,7 @@ interface = enp3s0
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
+;format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
@@ -231,20 +233,17 @@ date = " %d-%m-%Y"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
-
 label = %date% %time%
 
 [module/volume]
 type = internal/volume
 
 format-volume = <label-volume> <bar-volume>
-label-volume = VOL
+; volume icon from fontawesome
+label-volume = 
 label-volume-foreground = ${root.foreground}
 
-format-muted-prefix = " "
+;format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
 label-muted = sound muted
 
@@ -277,18 +276,18 @@ format-charging-underline = #ffb52a
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
+;format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
+;ramp-capacity-0 = 
+;ramp-capacity-1 = 
+;ramp-capacity-2 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
+;animation-charging-0 = 
+;animation-charging-1 = 
+;animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
@@ -298,7 +297,7 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+;format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
@@ -316,7 +315,7 @@ type = custom/menu
 
 format-spacing = 1
 
-label-open = 
+;label-open = 
 label-open-foreground = ${colors.secondary}
 label-close =  cancel
 label-close-foreground = ${colors.secondary}
@@ -342,7 +341,7 @@ menu-2-1-exec = menu-open-0
 type = custom/script
 interval = 1200
 format = <label>
-format-underline = #dc322f
+;format-underline = #dc322f
 label = "%output:0:30%"
 exec = "~/.config/polybar/pkg.sh"
 exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
@@ -361,7 +360,7 @@ format-padding = 0
 [module/coretemps]
 type = custom/script
 exec-if = sensors
-format-underline = #f50a4d
+;format-underline = #f50a4d
 exec = sensors | grep Core | awk '{print substr($3, 2, length($3)-5)}' | tr '\n' ' ' | sed 's/ /°C  /g' | sed 's/  $//'
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
