@@ -349,13 +349,11 @@ exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
 [module/spotify]
 type = custom/script
 exec = ~/.config/polybar/spotify.sh
-# TODO: exec-if: check if spotify is running
+interval = 1
 tail = true
 format-padding = 0
-;format-foreground = ${colors.foreground}
-;format-background = #0d000000
-;format-overline = ${colors.background}
-;format-underline = ${colors.background}
+format = <label>
+label = "%{A1:~/scripts/spotify_playpause.sh:}%output%%{A}"
 
 [module/coretemps]
 type = custom/script
