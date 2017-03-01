@@ -205,7 +205,7 @@ bindsym $mod+shift+p exec --no-startup-id "~/scripts/passmenu.sh --type"
 ###
 
 # fucking awesome bar (for workspaces)
-exec_always --no-startup-id ~/scripts/sleep_dz.sh &
+exec --no-startup-id polybar bottom &
 
 # set german keyboard (TODO)
 exec --no-startup-id setxkbmap de &
