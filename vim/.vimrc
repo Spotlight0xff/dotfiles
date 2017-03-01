@@ -295,7 +295,13 @@ tnoremap <C-l> <C-\><C-n><C-w>l
 
 
 """ ==> Compilation (+Error navigation)
-map <F5> :Neomake <CR>
+map <F5> :Neomake!<CR>
+""" TODO:
+" different modes for compilation
+" * python mode (single, module)
+" * single Makefile
+" * cmake (set buidsystem)
+" * other?
 
 " open quickfix window after make
 autocmd QuickFixCmdPost [^l]* nested cwindow
