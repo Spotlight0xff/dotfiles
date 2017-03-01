@@ -21,4 +21,7 @@ export QT_STYLE_OVERRIDE='gtk2' # needs qt5-styleplugins, qt5 apps should have g
 
 xset r rate 200 44
 
+# use arbtt to enable data collection
+arbtt-capture &
+
 exec $WM
