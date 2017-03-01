@@ -209,10 +209,10 @@ bindsym $mod+shift+p exec --no-startup-id "~/scripts/passmenu.sh --type"
 exec --no-startup-id polybar bottom &
 
 # set german keyboard (TODO)
-exec --no-startup-id setxkbmap de &
+exec_always --no-startup-id setxkbmap de &
 
 # set modmap, disable capslock
-exec_always --no-startup-id xmodmap ~/.Xmodmap &
+exec_always --no-startup-id xmodmap ~/.Xmodmap.de &
 
 # use compton as composite manager
 exec --no-startup-id compton --config ~/.compton.conf -b &
