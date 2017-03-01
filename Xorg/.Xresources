@@ -13,7 +13,9 @@ Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
 
 !! URxvt settings
-URxvt*font: xft:Source Code Pro for Powerline:size=10
+URxvt*font: xft: Droid Sans Mono for Powerline:size=10
+URxvt.letterSpace: -2
+URxvt.lineSpace: -1
 URxvt.buffered: false
 URxvt.color4:           RoyalBlue
 URxvt.cursorUnderline: 1
