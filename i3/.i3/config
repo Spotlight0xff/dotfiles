@@ -46,6 +46,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus [class="^((?!conky_overlay).)*$" instance="^((?!mutt).)*$"] scratchpad show
 
 # show the conky overlay
+bindsym $mod+grave [class="conky_overlay"] scratchpad show
 bindsym $mod+numbersign [class="conky_overlay"] scratchpad show
 
 # show the mutt overlay
