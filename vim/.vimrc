@@ -313,19 +313,34 @@ let g:neomake_open_list=2
 nnoremap <silent> <c-w>z :wincmd z<cr>:cclose<cr>:lclose<cr>
 
 fun! LNext(prev)
+  try
     try
-        try
-            if a:prev | lprev | else | lnext | endif
-        catch /^Vim\%((\a\+)\)\=:E553/
-            if a:prev | llast | else | lfirst | endif
-        catch /^Vim\%((\a\+)\)\=:E776/
-        endtry
-    catch /^Vim\%((\a\+)\)\=:E42/
+      if a:prev | lprev | else | lnext | endif
+    catch /^Vim\%((\a\+)\)\=:E553/
+      if a:prev | llast | else | lfirst | endif
+    catch /^Vim\%((\a\+)\)\=:E776/
     endtry
+  catch /^Vim\%((\a\+)\)\=:E42/
+  endtry
 endfun
 
-nnoremap <silent> ]q :call LNext(1)<CR>
-nnoremap <silent> [q :call LNext(0)<CR>
+fun! CNext(prev)
+  try
+    try
+      if a:prev | cprev | else | cnext | endif
+    catch /^Vim\%((\a\+)\)\=:E553/
+      if a:prev | clast | else | cfirst | endif
+    catch /^Vim\%((\a\+)\)\=:E776/
+    endtry
+  catch /^Vim\%((\a\+)\)\=:E42/
+  endtry
+endfun
+
+
+
+
+nnoremap <silent> <f4> :call CNext(0)<CR>
+nnoremap <silent> <f3> :call CNext(1)<CR>
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
