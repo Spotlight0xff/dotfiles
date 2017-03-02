@@ -247,6 +247,7 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>.  :tabprevious<cr>
 map <leader>-  :tabnext<cr>
+map <leader>/  :tabnext<cr>
 
 " fold by indent level, but don't open by default
 set foldmethod=indent
