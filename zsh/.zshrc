@@ -107,6 +107,9 @@ alias urldecode='python2.7 -c "import sys, urllib as ul; \
 alias urlencode='python2.7 -c "import sys, urllib as ul; \
         print ul.quote_plus(sys.argv[1])"'
 
+# run ipython in virtualenv
+alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
+
 alias pip3update='sudo pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip install -U'
 bindkey -a 'gg' beginning-of-buffer-or-history
 bindkey -a 'g~' vi-oper-swap-case
