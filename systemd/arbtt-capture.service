@@ -1,0 +1,11 @@
+[Unit]
+Description=Tracking Usage Statistics
+
+# arbtt needs to be installed using cabal
+
+[Service]
+ExecStart=/home/spotlight/.cabal/bin/arbtt-capture
+Restart=on-failure
+
+[Install]
+WantedBy=graphical.target
