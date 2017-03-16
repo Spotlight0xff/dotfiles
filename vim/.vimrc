@@ -274,6 +274,10 @@ endfunction
 " but only if we are in *.tex
 autocmd BufNewFile,BufRead *.tex call EnableTexItemEnv()
 
+" set tex flavor to latex
+let g:tex_flavor='latex'
+
+
 "-------------------------------------------------------------------
 
 " set cursor pos to first line of git commit
