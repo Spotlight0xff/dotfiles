@@ -47,7 +47,11 @@ source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # PROMPT
 autoload -U colors promptinit && colors
-PS1="%(0!.%{$fg[red]%}.%{$fg[green]%})%c%{$reset_color%}> "
+PS1="%(0!.%{$fg[red]%}.%{$fg[green]%})%c%{$reset_color%}"
+if [[ -n "$SSH_CLIENT" ]]; then
+  PS1+=%{$reset_color%}@%{$fg[blue]%}$(hostname -s)
+fi
+PS1+="%{$reset_color%}> "
 PRERPROMPT="%(0?..[%{$fg_no_bold[yellow]%}%?%{$reset_color%}])"
 
 precmd() {
