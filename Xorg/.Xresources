@@ -14,7 +14,7 @@ Xft.rgba: rgb
 
 !! URxvt settings
 URxvt*font: xft: Droid Sans Mono for Powerline:size=10
-URxvt.letterSpace: -2
+URxvt.letterSpace: 0
 URxvt.lineSpace: -1
 URxvt.buffered: false
 URxvt.color4:           RoyalBlue
