@@ -22,9 +22,9 @@ URxvt.cursorUnderline: 1
 URxvt.depth: 32
 URxvt.inheritPixmap: true
 URxvt.perl-lib: ~/.urxvt/ext/
-URxvt.perl-ext-common: keyboard-select
+!URxvt.perl-ext-common: keyboard-select
 URxvt.perl-ext:
-URxvt.keysym.Mod4-Escape: perl:keyboard-select:activate
+!URxvt.keysym.Mod4-Escape: perl:keyboard-select:activate
 URxvt.saveLines: 9000
 URxvt.scrollBar: false
 URxvt.secondaryScroll: true
