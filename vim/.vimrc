@@ -27,7 +27,7 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'justinmk/vim-sneak'
 
 " code completion engines
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 
 " snippets engine, integrates into YCM
 Plug 'SirVer/ultisnips'
