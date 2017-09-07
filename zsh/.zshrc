@@ -14,6 +14,7 @@ zstyle ':completion:*' rehash true
 bindkey -M vicmd '?' history-incremental-search-backward
 bindkey "^R" history-incremental-search-backward
 export TERMINFO="rxvt-unicode"
+export TERM='xterm'
 
 # 'less' colors for manpage
 export LESS_TERMCAP_mb=$'\e[01;31m'       # begin blinking
@@ -38,7 +39,7 @@ export SAGE_LOCAL="/usr"
 export GUROBI_HOME="/opt/gurobi651/linux64"
 export PATH=$PATH:$GUROBI_HOME/bin
 export PATH=$PATH:$HOME/.cabal/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$GUROBI_HOME/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$GUROBI_HOME/lib:/opt/cuda/extras/CUPTI/lib64
 autoload -Uz compinit
 compinit
 
@@ -100,7 +101,7 @@ alias m='make'
 alias vi='nvim'
 alias vim='nvim'
 
-alias msfconsole="msfconsole --quiet -x \"db_connect spotlight@msf\""
+alias msfconsole="msfconsole --quiet -x \"db_connect postgres@msf\""
 
 # select the only device by default
 alias kdeconnect-cli='kdeconnect-cli --device $(\kdeconnect-cli --list-available --id-only)'
