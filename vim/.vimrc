@@ -516,3 +516,4 @@ endfunction
 
 command! Tags call s:tags()
 
+set mouse=a
