@@ -1,0 +1,238 @@
+# i3 configuration by spotlight0xff@gmail.com
+# https://github.com/spotlight0xff/dotfiles
+# complete reference: http://i3wm.org/docs/userguide.html
+
+
+###
+### window setup
+###
+
+# Change window borders for some applications
+for_window [class="Firefox"] border 1pixel
+for_window [class="Chromium"] border none
+for_window [class="Xfce4-terminal"] border 1pixel
+for_window [class="URxvt"] border 1pixel
+for_window [class="Spotify"] border 1pixel
+
+
+
+# Conky
+#for_window [class="conky_bar"] floating enable, border none,move scratchpad
+for_window [class="ncmpcpp"] move scratchpad, border none
+
+# Font for window titles
+font pango:Droid Sans Mono 8
+
+###
+### i3 window shortcuts
+###
+
+# set modifier to alt, floating modifier also (mouse + $mod to move/resize)
+set $mod Mod1
+floating_modifier $mod
+
+
+# Appearance
+bindsym $mod+Shift+n border normal
+bindsym $mod+Shift+x border none
+bindsym $mod+Shift+o border 1pixel
+
+# scratchpad
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window (but not conky-overlay, nor mutt)
+bindsym $mod+minus [class="^((?!conky_overlay).)*$" instance="^((?!mutt).)*$"] scratchpad show
+
+# show the conky overlay
+bindsym $mod+grave [class="ncmpcpp"] scratchpad show
+bindsym $mod+numbersign [class="conky_overlay"] scratchpad show
+
+# show the mutt overlay
+#bindsym $mod+KP_Enter [instance="mutt"] scratchpad show
+
+# start a terminal
+bindsym $mod+Return exec urxvtc
+
+# kill focused window
+bindsym $mod+Shift+q kill
+bindsym $mod+q kill
+
+# change focus
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+h focus left
+
+# move focused window
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+v split v
+bindsym $mod+semicolon split h
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+bindsym $mod+c focus child
+
+# switch to workspace
+bindsym Mod1+1 workspace number 1
+bindsym Mod1+2 workspace number 2
+bindsym Mod1+3 workspace number 3
+bindsym Mod1+4 workspace number 4
+bindsym Mod1+5 workspace number 5
+bindsym Mod1+6 workspace number 6
+bindsym Mod1+7 workspace number 7
+bindsym Mod1+8 workspace number 8
+bindsym Mod1+9 workspace number 9
+bindsym Mod1+0 workspace number 10
+
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+bindsym $mod+shift+e exec ~/scripts/rename_workspace.sh
+
+mode "passthrough" {
+  bindsym mod4+Escape mode "default"
+}
+bindsym mod4+Escape mode "passthrough"
+
+
+
+
+
+###
+### Application shortcuts
+###
+
+bindcode Shift+64 exec --no-startup-id ~/scripts/keyboard_layout.sh > /home/spotlight/test
+
+# rofi application launcher
+bindsym $mod+d exec --no-startup-id rofi -show run
+
+# rofi ssh launcher
+bindsym $mod+Shift+s exec --no-startup-id rofi -show ssh
+
+# screenshot using scrot, saving in ownCloud
+bindsym $mod+F12 exec --no-startup-id ~/scripts/scrot.sh
+
+# music player control
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous 
+
+# player control, for spotify only (on desktop)
+#bindsym $mod+KP_Right exec --no-startup-id "playerctl --player=spotify next"
+#bindsym $mod+KP_Left exec --no-startup-id "playerctl --player=spotify previous"
+#bindsym $mod+KP_Begin exec --no-startup-id "playerctl --player=spotify play-pause"
+
+bindsym $mod+KP_Right exec --no-startup-id "mpc --host soundbar@192.168.0.178 next"
+bindsym $mod+KP_Left exec --no-startup-id "mpc --host soundbar@192.168.0.178 prev"
+bindsym $mod+KP_Begin exec --no-startup-id "mpc --host soundbar@192.168.0.178 toggle"
+
+# volume control
+bindsym XF86AudioMute exec --no-startup-id "~/scripts/volume_mute.sh"
+bindsym XF86AudioLowerVolume exec --no-startup-id "~/scripts/volume_lower.sh"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "~/scripts/volume_raise.sh"
+
+# brightness control
+bindsym XF86MonBrightnessDown exec --no-startup-id "~/scripts/brightness_lower.sh"
+bindsym XF86MonBrightnessUp exec --no-startup-id "~/scripts/brightness_raise.sh"
+
+# lock screen
+bindsym $mod+Control+l exec --no-startup-id ~/scripts/lock_desktop.sh
+
+# suspend system
+bindsym $mod+Control+s exec --no-startup-id systemctl suspend
+
+# start twitch.tv/csgo-scripts
+bindsym Control+KP_Delete exec "~/scripts/csgo_twitch.sh"
+
+# cycle wallpaper
+bindsym Control+KP_Add exec --no-startup-id "pkill wallpaper.sh; ~/scripts/wallpaper.sh &"
+bindsym Control+KP_Subtract exec --no-startup-id "pkill wallpaper_last.sh; ~/scripts/wallpaper_last.sh &"
+bindsym Control+Delete exec --no-startup-id "pkill wallpaper_del.sh; ~/scripts/wallpaper_del.sh &"
+
+bindsym $mod+p exec --no-startup-id rofi-pass
+bindsym $mod+shift+p exec --no-startup-id "~/scripts/passmenu.sh --type"
+
+
+### Autostart applications
+###
+
+# fucking awesome bar (for workspaces)
+exec --no-startup-id polybar bottom &
+exec --no-startup-id MONITOR=HDMI-0 polybar bottom --reload &
+
+# set german keyboard (TODO)
+exec_always --no-startup-id setxkbmap de &
+
+# set modmap, disable capslock
+exec_always --no-startup-id xmodmap ~/.Xmodmap.de &
+
+# use compton as composite manager
+exec --no-startup-id compton --config ~/.compton.conf -b &
+
+# start both conky apps, select using bash script
+exec --no-startup-id ~/scripts/conky_sel.sh &
+
+# notification daemon
+exec --no-startup-id dunst -markup -lh 20 -transparency 20 &
+
+# volume notification daemon (patched, for brightness support)
+exec --no-startup-id volnoti -t 1 &
+
+# unclutter (hide mouse cursor)
+exec --no-startup-id unclutter -jitter 5 -idle 2 &
+
+# two monitor setup
+exec --no-startup-id ~/.screenlayout/two_normal.sh &
