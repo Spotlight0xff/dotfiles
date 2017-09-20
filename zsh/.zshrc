@@ -1,12 +1,25 @@
+# zplug plugin manager
+if [[ ! -d $HOME/.zplug ]]; then
+    git clone https://github.com/zplug/zplug ~/.zplug
+    source ~/.zplug/init.zsh && zplug update --self
+fi
+
+source ~/.zplug/init.zsh
+
+zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
+
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+source =virtualenvwrapper_lazy.sh
+
+
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=1000000
 setopt appendhistory autocd HIST_IGNORE_DUPS nohashdirs CORRECT
 unsetopt beep
 bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename "/home/spotlight/.zshrc"
+zstyle :compinstall filename "$HOME/.zshrc"
 zstyle ':completion:*' menu select
 zstyle ':completion:*' use-ip true
 zstyle ':completion:*' rehash true
@@ -39,6 +52,7 @@ export SAGE_LOCAL="/usr"
 export GUROBI_HOME="/opt/gurobi651/linux64"
 export PATH=$PATH:$GUROBI_HOME/bin
 export PATH=$PATH:$HOME/.cabal/bin
+export PATH=$PATH:$HOME/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$GUROBI_HOME/lib:/opt/cuda/extras/CUPTI/lib64
 autoload -Uz compinit
 compinit
@@ -133,3 +147,6 @@ bindkey '\e.' insert-last-word
 
 FZF_CTRL_R_OPTS='--sort --reverse'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# plugin manager, source plugins/add to $PAT
+zplug load
