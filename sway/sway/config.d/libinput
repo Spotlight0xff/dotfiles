@@ -1,0 +1,10 @@
+# libinput stuff
+input "1267:12419:ETD2303:00_04F3:3083_To" {
+	dwt enabled
+	tap enabled
+	natural_scroll disabled
+  pointer_accel 0
+  scroll_method two_finger
+	middle_emulation enabled
+  accel_profile flat
+}

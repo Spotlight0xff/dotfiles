@@ -1,0 +1,25 @@
+# top bar, used to displace workspace buttons
+# polybar(top) will be drawn on top (with offset)
+bar {
+  position top
+  workspace_buttons yes
+  status_command true
+  font pango:Droid Sans Mono for Powerline 11
+  height 26
+
+  colors {
+      statusline #f9f9f9
+      background #323232
+      focused_workspace #555555 #555555 #ffffff
+      inactive_workspace #343434 #343434 #808080
+  }
+}
+
+# bottom bar
+# polybar(bottom) will be drawn on top
+bar {
+  position bottom
+  workspace_buttons no
+  height 27
+  status_command true
+}

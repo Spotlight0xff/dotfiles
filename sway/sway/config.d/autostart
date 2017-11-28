@@ -1,0 +1,6 @@
+# volume/brightness notification daemon
+exec volnoti
+
+
+exec polybar -c ~/.config/polybar/config_wayland --reload bottom
+exec polybar -c ~/.config/polybar/config_wayland --reload top

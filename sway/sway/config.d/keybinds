@@ -1,0 +1,22 @@
+
+# start a terminal
+bindsym $mod+Return exec $term
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start your launcher
+bindsym $mod+d exec xboomx
+
+# lockscreen
+bindsym $mod+alt+l exec ~/bin/lock_desktop_sway.sh
+
+# password manager
+bindsym $mod+p exec rofi-pass
+
+
+bindsym XF86AudioRaiseVolume exec ~/bin/volume_raise_alsa.sh
+bindsym XF86AudioLowerVolume exec ~/bin/volume_lower_alsa.sh
+bindsym XF86AudioMute exec ~/bin/volume_mute_alsa.sh
+bindsym XF86MonBrightnessDown exec ~/bin/brightness_lower_wayland.sh
+bindsym XF86MonBrightnessUp exec ~/bin/brightness_raise_wayland.sh

@@ -1,0 +1,12 @@
+
+# some rules for specific windows
+# may be obsolete now
+
+for_window [floating] move absolute position center
+for_window [class="Firefox"] border pixel 1
+for_window [class="Chromium"] border none
+for_window [id="termite"] border pixel 1
+for_window [class="URxvt"] border pixel 1
+for_window [class="Spotify"] border pixel 1
+for_window [title="float"]  floating enable, border pixel 0
+for_window [class="URxvt" instance="urxvtfuzzy"]  floating enable, border pixel 0
