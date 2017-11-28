@@ -1,0 +1,290 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[colors]
+background = #323232
+background-alt = #444
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+warning = #ff8400
+green = #55aa55
+
+[fonts]
+0 = Droid Sans:fontformat=truetype:size=11:antialias=true
+1 = FontAwesome:size=12
+2 = Material Icons:size=12
+
+
+[bar/top]
+monitor = XWAYLAND0
+width = 50%
+height = 26
+radius = 0.0
+offset-x = 50%
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 2
+padding-right = 2
+
+module-margin-left = 2
+module-margin-right = 2
+
+font-0 = ${fonts.0}
+font-1 = ${fonts.1}
+font-2 = ${fonts.2}
+
+modules-left = 
+modules-center = 
+modules-right = volume battery date
+
+override-redirect = true
+
+
+
+[bar/bottom]
+monitor = XWAYLAND0
+width = 100%
+height = 27
+bottom = true
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 2
+padding-right = 2
+
+module-margin-left = 2
+module-margin-right = 2
+
+font-0 = ${fonts.0}
+font-1 = ${fonts.1}
+font-2 = ${fonts.2}
+
+modules-left = wlan coretemps 
+modules-center = spotify
+modules-right = cpu memory filesystem 
+
+override-redirect = true
+
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted-padding-left = 0
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-font = 4
+format-prefix-foreground = ${colors.foreground}
+label = %percentage_used%%
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+; \xf1eb
+format-connected =  <label-connected>
+;format-connected-underline = #9f78e1
+label-connected = "%{A1:nm-connection-editor:}%essid% (%signal%%)%{A}"
+
+format-disconnected = <label-disconnected>
+label-disconnected = disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+label = %date% %time%
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume> <bar-volume>
+; volume icon from fontawesome
+label-volume-font = 4
+label-volume = 
+label-volume-foreground = ${colors.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.green}
+bar-volume-foreground-1 = ${colors.green}
+bar-volume-foreground-2 = ${colors.green}
+bar-volume-foreground-3 = ${colors.green}
+bar-volume-foreground-4 = ${colors.green}
+bar-volume-foreground-5 = ${colors.warning}
+bar-volume-foreground-6 = ${colors.alert}
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+time-format = %H:%M
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.green}
+
+label-discharging = %percentage%% (%time%)
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${colors.warning}
+
+format-full-prefix-foreground = ${colors.foreground-alt}
+
+; uses fontawesome
+; \xf244
+ramp-capacity-0 = 
+
+; \xf245
+ramp-capacity-1 = 
+
+; \xf242
+ramp-capacity-2 = 
+
+; \xf241
+ramp-capacity-3 = 
+
+; \xf240
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground}
+
+animation-charging-0 = ${self.ramp-capacity-0}
+animation-charging-1 = ${self.ramp-capacity-1}
+animation-charging-2 = ${self.ramp-capacity-2}
+animation-charging-3 = ${self.ramp-capacity-3}
+animation-charging-4 = ${self.ramp-capacity-4}
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+[module/powermenu]
+type = custom/menu
+
+format-spacing = 1
+
+;label-open = 
+label-open-foreground = ${colors.secondary}
+label-close =  cancel
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[module/pkg]
+type = custom/script
+interval = 1200
+format = <label>
+;format-underline = #dc322f
+label = "%output:0:30%"
+exec = "~/.config/polybar/pkg.sh"
+exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
+
+[module/spotify]
+type = custom/script
+exec = ~/.config/polybar/spotify.sh
+interval = 1
+tail = true
+format-padding = 0
+format = <label>
+label = "%{A1:~/bin/spotify_playpause.sh:}%output%%{A}"
+
+[module/coretemps]
+type = custom/script
+; only print sensor data if one value is above 50
+exec-if = [[ -n $(sensors -u| grep -e 'temp[0-9]_input' | awk '{ORS="";print ($2>60)?1:""}') ]]
+exec = sensors | grep Core | awk '{print substr($3, 2, length($3)-5)}' | tr '\n' ' ' | sed 's/ /°C  /g' | sed 's/  $//'
+format-prefix = " "
+interval = 2
+format-prefix-foreground = ${colors.foreground}
+
+[module/hamster]
+type = custom/script
+interval = 2
+exec = ~/.config/polybar/hamster.sh
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini
