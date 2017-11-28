@@ -19,14 +19,14 @@ secondary = #e60053
 alert = #bd2c40
 
 [bar/bottom]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:DVI-D-0}
 width = 100%
 height = 27
 bottom = true
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 1.0
-fixed-center = false
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -88,6 +88,7 @@ interval = 25
 mount-0 = /
 mount-1 = /home
 
+label-mounted-padding = 2
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
@@ -99,7 +100,7 @@ index-sort = true
 wrapping-scroll = true
 
 ; Only show workspaces on the same output as the bar
-;pin-workspaces = true
+pin-workspaces = true
 
 label-mode-padding = 2
 label-mode-foreground = #000
@@ -353,7 +354,7 @@ interval = 1
 tail = true
 format-padding = 0
 format = <label>
-label = "%{A1:~/scripts/spotify_playpause.sh:}%output%%{A}"
+label = "%{A1:~/bin/spotify_playpause.sh:}%output%%{A}"
 
 [module/coretemps]
 type = custom/script
